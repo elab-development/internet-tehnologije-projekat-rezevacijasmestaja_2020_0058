@@ -44,4 +44,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relacija sa smeštajima koje je korisnik dodao
+    public function accommodations()
+    {
+        return $this->hasMany(Accommodation::class, 'userID', 'id');
+    }
+
+    // Relacija sa rezervacijama koje je korisnik napravio
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'userID', 'id');
+    }
 }
