@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     // Relacija sa smeštajima koje je korisnik dodao
+     public function accommodations()
+     {
+         return $this->hasMany(Accommodation::class, 'userID', 'id');
+     }
+ 
+     // Relacija sa rezervacijama koje je korisnik napravio
+     public function reservations()
+     {
+         return $this->hasMany(Reservation::class, 'userID', 'id');
+     }
+ 
 }
