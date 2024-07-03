@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserReservationController;
 use App\Http\Controllers\AccommodationController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,15 @@ Route::get('/users/{id}/reservations', [UserReservationController::class, 'index
 
 Route::get('/accommodations', [AccommodationController::class, 'index']);
 Route::get('/accommodations/page', [AccommodationController::class, 'indexPaginate']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+
+    // API route for logout user
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
