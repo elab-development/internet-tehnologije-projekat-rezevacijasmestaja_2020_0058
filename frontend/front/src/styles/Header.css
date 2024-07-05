@@ -1,0 +1,118 @@
+.header {
+  background: linear-gradient(to bottom, #8be8e5, white);
+  padding: 20px;
+  text-align: left;
+}
+
+.title {
+  font-size: 4rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  color: #6f61c0;
+  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+.slogan {
+  font-size: 18px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: center;
+  color: #6f61c0;
+  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.2);
+}
+
+.search {
+  display: flex;
+  margin-top: 3rem;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12rem;
+  margin-right: 0rem;
+  /* border-color: rgba(160, 132, 232, 0.5); */
+  border: solid rgba(160, 132, 232, 0.5) 3px;
+  border-radius: 1rem;
+  padding: 15px;
+  background-color: rgba(160, 132, 232, 0.1);
+  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.2);
+}
+
+.searchButton {
+  margin-left: 2rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #6f61c0;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.searchButton:hover {
+  background-color: #a084e8;
+  color: #8be8e5;
+}
+
+/* .searchContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+} */
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  height: 1.4rem;
+  border-radius: 0.2rem;
+  border-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(160, 132, 232, 0.5);
+}
+
+.input::placeholder {
+  color: black;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: center;
+}
+
+.datePicker {
+  margin-right: 10px;
+  font-size: 16px;
+  height: 2.5rem;
+  border-radius: 0.2rem;
+  border-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(160, 132, 232, 0.5);
+}
+
+.datePicker::placeholder {
+  color: black;
+}
+
+.guestsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.guestButton {
+  margin-left: 5px;
+  padding: 10px;
+  font-size: 16px;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(160, 132, 232, 0.2);
+  border-radius: 5rem;
+  border-color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}

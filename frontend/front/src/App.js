@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
+import Header from './components/Header.jsx';
 
 function App() {
   return (
     <div className="App">
-      <NavBar></NavBar>
-      <Footer/>
+      <NavBar />
+      <Header />
+      <Footer />
     </div>
   );
 }
