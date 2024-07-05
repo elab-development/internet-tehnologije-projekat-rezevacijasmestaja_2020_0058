@@ -1,0 +1,31 @@
+.filters-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px; 
+    margin-left: 15rem;
+    margin-right: 18rem;
+    text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.6);
+}
+
+.filter-icon {
+    text-decoration: none; /* Uklanja podvučenost linka */
+    color: #6F61C0; /* Boja ikonica */
+    font-size: 2rem; /* Veličina ikonica */
+    transition: color 0.3s ease; /* Prelaz za boju */
+    text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-icon:hover{
+    color: #8BE8E5;
+}
+
+.filter-text {
+    margin-top: 10px; /* Razmak između ikonice i teksta */
+    font-size: 1rem; /* Veličina teksta */
+    color: #333; /* Boja teksta */
+}
+
