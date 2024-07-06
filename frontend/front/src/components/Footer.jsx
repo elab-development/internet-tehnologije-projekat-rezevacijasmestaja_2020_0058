@@ -28,7 +28,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <div className="fText">Copyright © 2024 SuiteEscape.</div>
+      <div className="fText">Copyright © 2024 Suite Escape.</div>
     </div>
   );
 }

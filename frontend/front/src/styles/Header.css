@@ -35,7 +35,6 @@
   justify-content: center;
   margin-left: 12rem;
   margin-right: 0rem;
-  /* border-color: rgba(160, 132, 232, 0.5); */
   border: solid rgba(160, 132, 232, 0.5) 3px;
   border-radius: 1rem;
   padding: 15px;
@@ -55,11 +54,15 @@
   background-color: #6f61c0;
   color: white;
   font-size: 1.25rem;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
 .searchButton:hover {
   background-color: #a084e8;
   color: #8be8e5;
+  transform: scale(1.05);
 }
 
 /* .searchContainer {
@@ -76,6 +79,7 @@
   border-radius: 0.2rem;
   border-color: rgba(0, 0, 0, 0.45);
   background-color: rgba(160, 132, 232, 0.5);
+  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
 }
 
 .input::placeholder {
@@ -95,6 +99,7 @@
   border-color: rgba(0, 0, 0, 0.45);
   background-color: rgba(160, 132, 232, 0.5);
   padding: 10px;
+  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
 }
 
 .datePicker::placeholder {
@@ -109,11 +114,18 @@
 .guestButton {
   margin-left: 5px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
   width: 2.5rem;
   height: 2.5rem;
   background-color: rgba(160, 132, 232, 0.2);
-  border-radius: 5rem;
+  border-radius: 100%;
   border-color: rgba(0, 0, 0, 0.45);
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guestButton:hover{
+  transform: scale(1.05);
+  background-color:rgba(139, 232, 229,0.2);
 }

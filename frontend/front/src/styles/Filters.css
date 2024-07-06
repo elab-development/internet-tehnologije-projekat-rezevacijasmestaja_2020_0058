@@ -3,8 +3,8 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 20px; 
-    margin-left: 15rem;
-    margin-right: 18rem;
+    margin-left: 16rem;
+    margin-right: 15rem;
     text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.6);
 }
 
@@ -14,6 +14,7 @@
     font-size: 2rem; 
     transition: color 0.3s ease; 
     text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,11 +22,12 @@
 
 .filter-icon:hover{
     color: #8BE8E5;
+    transform: scale(1.05);
 }
 
 .filter-text {
     margin-top: 10px; 
     font-size: 1rem; 
-    color: #333;
+    color: #6F61C0;
 }
 
