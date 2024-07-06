@@ -4,27 +4,27 @@ import '../styles/LocationCards.css';
 
 const locations = [
     {
-        image: 'path/to/image1.jpg',
+        image: 'https://via.placeholder.com/640x480.png/007711?text=quidem',
         city: 'Paris',
         country: 'France',
     },
     {
-        image: 'path/to/image2.jpg',
+        image: 'https://via.placeholder.com/640x480.png/007711?text=quidem',
         city: 'Tokyo',
         country: 'Japan',
     },
     {
-        image: 'path/to/image3.jpg',
+        image: 'https://via.placeholder.com/640x480.png/007711?text=quidem',
         city: 'New York',
         country: 'USA',
     },
     {
-        image: 'path/to/image4.jpg',
+        image: 'https://via.placeholder.com/640x480.png/007711?text=quidem',
         city: 'Sydney',
         country: 'Australia',
     },
     {
-        image: 'path/to/image5.jpg',
+        image: 'https://via.placeholder.com/640x480.png/007711?text=quidem',
         city: 'Cape Town',
         country: 'South Africa',
     },

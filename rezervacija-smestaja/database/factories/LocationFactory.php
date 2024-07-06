@@ -19,6 +19,7 @@ class LocationFactory extends Factory
         return [
             'grad' => $this->faker->word,
             'drzava' => $this->faker->word,
+            'putanja' => $this->faker->imageUrl,
             'created_at' => now(),
             'updated_at' => now(),
         ];
