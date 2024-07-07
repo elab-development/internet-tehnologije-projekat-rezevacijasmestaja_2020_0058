@@ -16,11 +16,11 @@ class LocationSeeder extends Seeder
         //Location::factory()->count(5)->create();
 
         $locations = [
-            ['grad' => 'Pariz', 'drzava' => 'Francuska', 'created_at' => now(), 'updated_at' => now()],
-            ['grad' => 'Berlin', 'drzava' => 'Nemacka', 'created_at' => now(), 'updated_at' => now()],
-            ['grad' => 'Beograd', 'drzava' => 'Srbija', 'created_at' => now(), 'updated_at' => now()],
-            ['grad' => 'Madrid', 'drzava' => 'Spanija', 'created_at' => now(), 'updated_at' => now()],
-            ['grad' => 'Amsterdam', 'drzava' => 'Holandija', 'created_at' => now(), 'updated_at' => now()]
+            ['grad' => 'Pariz', 'drzava' => 'Francuska', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()],
+            ['grad' => 'Berlin', 'drzava' => 'Nemacka', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()],
+            ['grad' => 'Beograd', 'drzava' => 'Srbija', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()],
+            ['grad' => 'Madrid', 'drzava' => 'Spanija', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()],
+            ['grad' => 'Amsterdam', 'drzava' => 'Holandija', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()]
         ];
 
         foreach ($locations as $location) {
