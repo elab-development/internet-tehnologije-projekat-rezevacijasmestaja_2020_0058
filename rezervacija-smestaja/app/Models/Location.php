@@ -11,8 +11,9 @@ class Location extends Model
 
     protected $primaryKey = 'lokacijaID';
     protected $fillable = [
-        'grad', 
-        'drzava'
+        'grad',
+        'drzava',
+        'putanja'
     ];
 
     // Relacija sa smeštajima u ovoj lokaciji
@@ -20,5 +21,4 @@ class Location extends Model
     {
         return $this->hasMany(Accommodation::class, 'lokacijaID', 'lokacijaID');
     }
-
 }
