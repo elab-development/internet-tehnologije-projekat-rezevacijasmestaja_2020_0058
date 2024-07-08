@@ -8,7 +8,7 @@ const AccommodationCard = ({ image, name, location, price }) => {
             <div className="accommodation-details">
                 <h3 className="accommodation-name">{name}</h3>
                 <p className="accommodation-location">{location}</p>
-                <p className="accommodation-price">{price} per night</p>
+                <p className="accommodation-price">€{price} per night</p>
             </div>
         </div>
     );
