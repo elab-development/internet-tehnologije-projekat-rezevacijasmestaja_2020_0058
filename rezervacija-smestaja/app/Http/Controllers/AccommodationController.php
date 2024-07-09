@@ -13,11 +13,13 @@ class AccommodationController extends Controller
      */
     public function index()
     {
-        $accommodation = Accommodation::all();
-        if (is_null($accommodation) || count($accommodation) === 0) {
+        // $accommodations = Accommodation::all();
+        $accommodations = Accommodation::with(['user', 'location', 'accommodationType'])->get();
+
+        if (is_null($accommodations) || count($accommodations) === 0) {
             return response()->json('No accommodations found!', 404);
         }
-        return response()->json(new AccommodationCollection($accommodation));
+        return response()->json(new AccommodationCollection($accommodations));
     }
 
     public function indexPaginate()

@@ -19,5 +19,4 @@ class AccommodationType extends Model
     {
         return $this->hasMany(Accommodation::class, 'tipSmestajaID', 'tipSmestajaID');
     }
-
 }

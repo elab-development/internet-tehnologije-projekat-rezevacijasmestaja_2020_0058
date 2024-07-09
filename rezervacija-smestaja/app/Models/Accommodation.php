@@ -11,17 +11,17 @@ class Accommodation extends Model
 
     protected $primaryKey = 'smestajID';
     protected $fillable = [
-        'naziv', 
-        'opis', 
-        'lokacijaID', 
-        'adresa', 
-        'brojKreveta', 
+        'naziv',
+        'opis',
+        'lokacijaID',
+        'adresa',
+        'brojKreveta',
         'maksimalanBrojOsoba',
-        'cenaPoNoci', 
-        'udaljenostOdCentra', 
-        'putanja', 
-        'tipSmestajaID', 
-        'userID'//od strane koga je kreiran smestaj
+        'cenaPoNoci',
+        'udaljenostOdCentra',
+        'putanja',
+        'tipSmestajaID',
+        'user' //od strane koga je kreiran smestaj
     ];
 
     // Relacija sa lokacijom smeštaja
@@ -47,5 +47,4 @@ class Accommodation extends Model
     {
         return $this->hasMany(Reservation::class, 'smestajID', 'smestajID');
     }
-
 }

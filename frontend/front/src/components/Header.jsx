@@ -3,20 +3,18 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/Header.css';
 import { FaSearch } from 'react-icons/fa';
+import Search from './Search'
 
 const Header = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [guests, setGuests] = useState(1);
-
-  const increaseGuests = () => setGuests(guests + 1);
-  const decreaseGuests = () => setGuests(guests > 1 ? guests - 1 : 1);
 
   return (
     <div className="header">
       <h1 className="title">Suite Escape</h1>
       <p className="slogan">Discover. Book. Escape.</p>
-      <div className="search">
+
+      <Search />
+
+      {/* <div className="search">
         <div className="searchContainer">
             <input type="text" placeholder="Destination" className="input" />
             <div className="dateContainer">
@@ -42,7 +40,10 @@ const Header = () => {
       <button className="searchButton">
         <FaSearch className="searchIcon" />
       </button>
-     </div>
+     </div> */}
+
+
+
     </div>
   );
 };
