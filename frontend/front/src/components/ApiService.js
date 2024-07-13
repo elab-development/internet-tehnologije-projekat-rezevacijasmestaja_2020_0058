@@ -64,9 +64,9 @@ class ApiService {
     return axios.get("http://localhost:8000/api/accommodations");
   }
 
-  /*getAccommodationById(id) {
+  getAccommodationById(id) {
     return axios.get(`http://localhost:8000/api/accommodations/${id}`);
-  }*/
+  }
 
   createAccommodation(accommodation) {
     return axios.post("http://localhost:8000/api/accommodations", accommodation, {

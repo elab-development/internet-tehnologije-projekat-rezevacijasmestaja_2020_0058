@@ -1,0 +1,29 @@
+.accommodation-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.accommodation-detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.accommodation-detail-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.accommodation-detail-container p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.accommodation-detail-container p strong {
+    font-weight: bold;
+}

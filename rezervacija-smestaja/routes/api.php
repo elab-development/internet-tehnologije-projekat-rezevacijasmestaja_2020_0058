@@ -25,6 +25,7 @@ Route::get('/users/{id}/reservations', [UserReservationController::class, 'index
 
 Route::get('/accommodations', [AccommodationController::class, 'index']);
 Route::get('/accommodations/page', [AccommodationController::class, 'indexPaginate']);
+Route::get('/accommodations/{id}', [AccommodationController::class, 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

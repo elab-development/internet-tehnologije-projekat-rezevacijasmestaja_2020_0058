@@ -51,9 +51,15 @@ class AccommodationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Accommodation $accommodation)
+    public function show($id)
     {
-        //
+        $accommodation = Accommodation::with(['location', 'accommodationType'])->find($id);
+
+        if (!$accommodation) {
+            return response()->json(['error' => 'Accommodation not found'], 404);
+        }
+
+        return response()->json($accommodation);
     }
 
     /**
