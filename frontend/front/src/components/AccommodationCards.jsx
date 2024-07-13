@@ -3,7 +3,7 @@ import AccommodationCard from './AccommodationCard';
 import { apiService } from './ApiService';
 import '../styles/AccommodationCards.css';
  
-const AccommodationCards = ({ accomodations }) => {
+const AccommodationCards = () => {
     const [accommodations, setAccommodations] = useState([]);
  
     useEffect(() => {
@@ -23,7 +23,6 @@ const AccommodationCards = ({ accomodations }) => {
                 }
                 console.log(nizKartice);
                 setAccommodations(nizKartice);
-                // console.log(accommodations);
             } catch (error) {
                 console.error('Error fetching accommodations:', error);
             }
@@ -38,7 +37,7 @@ const AccommodationCards = ({ accomodations }) => {
             <div className="accommodation-cards">
                 {accommodations.map((accommodation) => (
                     <AccommodationCard
-                        key={accommodation.smestajID}
+                        id={accommodation.smestajID}
                         image={accommodation.putanja}
                         name={accommodation.naziv}
                         location={accommodation.lokacija}

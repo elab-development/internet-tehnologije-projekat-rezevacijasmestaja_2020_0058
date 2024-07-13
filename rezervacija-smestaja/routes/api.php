@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserReservationController;
 use App\Http\Controllers\AccommodationController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::get('/users/{id}/reservations', [UserReservationController::class, 'index
 Route::get('/accommodations', [AccommodationController::class, 'index']);
 Route::get('/accommodations/page', [AccommodationController::class, 'indexPaginate']);
 Route::get('/accommodations/{id}', [AccommodationController::class, 'show']);
+Route::get('/accommodations/location/{id}', [AccommodationController::class, 'getByLocationId']);
+
+Route::get('/locations', [LocationController::class, 'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

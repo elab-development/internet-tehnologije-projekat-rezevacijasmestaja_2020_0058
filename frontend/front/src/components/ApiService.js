@@ -68,6 +68,10 @@ class ApiService {
     return axios.get(`http://localhost:8000/api/accommodations/${id}`);
   }
 
+  getAccommodationsByLocationId(locationId) {
+    return axios.get(`http://localhost:8000/api/accommodations/location/${locationId}`);
+  }
+
   createAccommodation(accommodation) {
     return axios.post("http://localhost:8000/api/accommodations", accommodation, {
       headers: {
@@ -91,6 +95,11 @@ class ApiService {
       },
     });
   }*/
+
+  //Locations
+  getLocations() {
+    return axios.get('http://localhost:8000/api/locations');
+  }
 
   // Reservations
   getReservations() {

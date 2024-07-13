@@ -1,9 +1,13 @@
 import React from 'react';
 import '../styles/AccommodationCard.css';
 
-const AccommodationCard = ({ image, name, location, price }) => {
+const AccommodationCard = ({ id, image, name, location, price }) => {
+    const handleClick = () => {
+        window.open(`/accommodations/${id}`, '_blank');
+    };
+
     return (
-        <div className="accommodation-card">
+        <div className="accommodation-card" onClick={handleClick}>
             <img src={image} alt={name} className="accommodation-image" />
             <div className="accommodation-details">
                 <h3 className="accommodation-name">{name}</h3>
