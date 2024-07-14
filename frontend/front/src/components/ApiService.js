@@ -6,15 +6,36 @@ class ApiService {
     return axios.post("http://localhost:8000/api/register", user);
   }
 
+  // login(email, password) {
+  //   return axios.post("http://localhost:8000/api/login", {
+  //     email: email,
+  //     password: password
+  //   });
+  // }
+
   login(email, password) {
-    return axios.post("http://localhost:8000/api/login", {
-      email: email,
-      password: password
-    });
+    return axios.post('http://localhost:8000/api/login', { email, password })
+      .then(response => {
+        const { access_token, user, role } = response.data;
+        this.setToken(access_token);
+        this.setLoginInfo(role, user.email, user.id);
+        return response.data;
+      });
   }
 
+  // logout() {
+  //   return window.sessionStorage.clear();
+  // }
+
   logout() {
-    return window.sessionStorage.clear();
+    return axios.post('http://localhost:8000/api/logout', {}, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    }).then(response => {
+      this.clearLoginInfo();
+      return response;
+    });
   }
 
   setToken(token) {
@@ -37,6 +58,13 @@ class ApiService {
     const id = window.sessionStorage.getItem("id");
 
     return { role, email, id };
+  } 
+
+  clearLoginInfo() {
+    window.sessionStorage.removeItem("token");
+    window.sessionStorage.removeItem("role");
+    window.sessionStorage.removeItem("email");
+    window.sessionStorage.removeItem("id");
   }
 
  /* getLoggedInUser() {

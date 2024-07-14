@@ -21,7 +21,7 @@ const AccommodationCards = () => {
                     nizIndexi[i] = rnd;
                     i++;
                 }
-                console.log(nizKartice);
+                //console.log(nizKartice);
                 setAccommodations(nizKartice);
             } catch (error) {
                 console.error('Error fetching accommodations:', error);

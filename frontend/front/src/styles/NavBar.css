@@ -8,7 +8,6 @@
   top: 0;
   z-index: 999;
   transition: box-shadow 0.3s ease;
-  /* overflow: hidden; */
 }
 
 .navBar.shadow {
@@ -17,7 +16,6 @@
 
 .navContainer {
   width: 100%;
-  /* max-width: 1024px; */
   color: white;
   display: flex;
   align-items: center;
@@ -43,6 +41,20 @@
   margin-left: 20px;
   border: none;
   padding: 10px 15px;
+  cursor: pointer;
+  color: white;
+  background-color: #6f61c0;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logoutButton {
+  font-size: 15px;
+  margin-left: 20px;
+  border: none;
+  padding: 12px 30px;
   cursor: pointer;
   color: white;
   background-color: #6f61c0;

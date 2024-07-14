@@ -5,6 +5,8 @@ import './App.css';
 import Home from './components/Home.jsx';
 import AccommodationDetail from './components/AccommodationDetail.jsx';
 import LocationAccommodations from './components/LocationAccommodations.jsx';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/accommodations/:id" element={<AccommodationDetail />} />
           <Route path="/locations/:locationId" element={<LocationAccommodations />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
     </Router>
 
