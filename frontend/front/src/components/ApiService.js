@@ -124,6 +124,19 @@ class ApiService {
     });
   }*/
 
+  // Search accommodations
+  searchAccommodations(destination, startDate, endDate, guests) {
+    return axios.get('http://localhost:8000/api/search', {
+      params: { destination, startDate, endDate, guests }
+    });
+  }
+
+  getUnavailableDates(destination) {
+    return axios.get('http://localhost:8000/api/unavailable-dates', {
+      params: { destination }
+    });
+  }
+
   //Locations
   getLocations() {
     return axios.get('http://localhost:8000/api/locations');

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserReservationController;
 use App\Http\Controllers\AccommodationController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,11 @@ Route::get('/accommodations/page', [AccommodationController::class, 'indexPagina
 Route::get('/accommodations/{id}', [AccommodationController::class, 'show']);
 Route::get('/accommodations/location/{id}', [AccommodationController::class, 'getByLocationId']);
 
+Route::get('/unavailable-dates', [SearchController::class, 'getUnavailableDates']);
+Route::get('/search', [SearchController::class, 'search']);
+
 Route::get('/locations', [LocationController::class, 'index']);
+Route::get('/locations/{id}', [LocationController::class, 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

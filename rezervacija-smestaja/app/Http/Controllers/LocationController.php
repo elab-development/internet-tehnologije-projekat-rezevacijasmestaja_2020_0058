@@ -12,4 +12,15 @@ class LocationController extends Controller
         $locations = Location::all();
         return response()->json($locations);
     }
+
+    public function show($id)
+    {
+        $location = Location::find($id);
+
+        if (!$location) {
+            return response()->json(['error' => 'Location not found'], 404);
+        }
+
+        return response()->json($location);
+    }
 }
