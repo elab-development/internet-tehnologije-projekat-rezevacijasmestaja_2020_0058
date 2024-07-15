@@ -34,6 +34,7 @@ const SearchComponent = () => {
     apiService.searchAccommodations(destination, startDate, endDate, guests)
       .then(response => {
         const data = response.data;
+        console.log(data);
         setResults(data);
         if (data.length === 0) {
           setErrorMessage('No accommodations available for the selected dates. Please choose different dates.');
@@ -103,7 +104,7 @@ const SearchComponent = () => {
             id={accommodation.smestajID}
             image={accommodation.putanja}
             name={accommodation.naziv}
-            location={accommodation.lokacija}
+            location={accommodation.location}
             price={accommodation.cenaPoNoci}
           />
         ))}

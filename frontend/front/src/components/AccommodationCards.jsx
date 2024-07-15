@@ -33,7 +33,7 @@ const AccommodationCards = () => {
  
     return (
         <div className="accommodation-cards-container">
-            <h2>Available accommodations</h2>
+            <h2>Recommended accommodations around the world</h2>
             <div className="accommodation-cards">
                 {accommodations.map((accommodation) => (
                     <AccommodationCard

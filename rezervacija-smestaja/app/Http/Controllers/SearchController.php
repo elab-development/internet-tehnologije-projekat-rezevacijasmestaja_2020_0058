@@ -33,11 +33,17 @@ class SearchController extends Controller
         $endDate = $request->input('endDate');
         $guests = $request->input('guests');
 
+        $destinationParts = preg_split('/\s*,\s*|\s+/', $destination);
+
         // Get accommodations by destination
         $accommodations = Accommodation::with('location')
-            ->whereHas('location', function ($query) use ($destination) {
-                $query->where('grad', 'like', "%$destination%")
-                    ->orWhere('drzava', 'like', "%$destination%");
+            ->whereHas('location', function ($query) use ($destinationParts) {
+                $query->where(function ($query) use ($destinationParts) {
+                    foreach ($destinationParts as $part) {
+                        $query->orWhere('grad', 'like', "%$part%")
+                                ->orWhere('drzava', 'like', "%$part%");
+                    }
+                });
             })
             ->where('maksimalanBrojOsoba', '>=', $guests)
             ->get();     
