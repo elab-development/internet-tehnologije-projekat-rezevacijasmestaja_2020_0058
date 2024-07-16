@@ -112,6 +112,10 @@ class ApiService {
     });
   }
 
+  deleteAccommodation(id){
+    return axios.delete(`http://localhost:8000/api/accommodations/${id}`)
+  }
+
   addAccommodation(data) {
     return axios.post('http://localhost:8000/api/accommodations', data);
   }

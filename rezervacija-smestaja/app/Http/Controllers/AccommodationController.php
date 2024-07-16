@@ -75,20 +75,6 @@ class AccommodationController extends Controller
             'userID' => 'required|exists:users,id'
         ]);
 
-        // $accommodation = Accommodation::create([
-        //     'naziv' => $validatedData['naziv'],
-        //     'opis' => $validatedData['opis'],
-        //     'lokacijaID' => $validatedData['lokacijaID'],
-        //     'adresa' => $validatedData['adresa'],
-        //     'brojKreveta' => $validatedData['brojKreveta'],
-        //     'maksimalanBrojOsoba' => $validatedData['maksimalanBrojOsoba'],
-        //     'cenaPoNoci' => $validatedData['cenaPoNoci'],
-        //     'udaljenostOdCentra' => $validatedData['udaljenostOdCentra'],
-        //     'putanja' => $validatedData['putanja'],
-        //     'userID' => $validatedData['userID'],
-        //     'tipSmestajaID' => $validatedData['tipSmestajaID']
-        // ]);
-
         $accommodation = Accommodation::create($validatedData);
 
         return response()->json($accommodation, 201);
@@ -137,8 +123,13 @@ class AccommodationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Accommodation $accommodation)
+    public function destroy($id)
     {
-        //
+        $accommodation = Accommodation::find($id);
+        if (!$accommodation) {
+            return response()->json(['message' => 'Accommodation not found'], 404);
+        }
+        $accommodation->delete();
+        return response()->json(['message' => 'Accommodation deleted successfully']);
     }
 }

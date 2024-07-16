@@ -9,6 +9,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AccommodationTypeController;
+use App\Models\Reservation;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::get('/accommodations/page', [AccommodationController::class, 'indexPagina
 Route::get('/accommodations/{id}', [AccommodationController::class, 'show']);
 Route::get('/accommodations/location/{id}', [AccommodationController::class, 'getByLocationId']);
 Route::post('/accommodations', [AccommodationController::class, 'store']); /* Izmenjeno */
+Route::delete('/accommodations/{id}', [AccommodationController::class, 'destroy']);
 
 Route::get('/unavailable-dates', [SearchController::class, 'getUnavailableDates']);
 Route::get('/search', [SearchController::class, 'search']);
@@ -44,6 +46,7 @@ Route::get('/locations/{id}', [LocationController::class, 'show']);
 Route::get('/accommodation-types', [AccommodationTypeController::class, 'index']); // Izmenjeno
 
 //Route::post('/reservations', [ReservationController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/reservations', [ReservationController::class, 'store']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -57,5 +60,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     //Route::get('/reservations', [ReservationController::class, 'index']);
-    Route::post('/reservations', [ReservationController::class, 'store']);
+    // Route::post('/reservations', [ReservationController::class, 'store']); // Izmenjeno -> zakomentarisano
 });

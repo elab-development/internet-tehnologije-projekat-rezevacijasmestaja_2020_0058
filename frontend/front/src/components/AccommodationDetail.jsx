@@ -161,7 +161,7 @@
 // export default AccommodationDetail;
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { apiService } from './ApiService';
@@ -171,6 +171,7 @@ import Footer from './Footer.jsx';
 
 const AccommodationDetail = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [accommodation, setAccommodation] = useState(null);
     const [loading, setLoading] = useState(true);
     const [startDate, setStartDate] = useState(null);
@@ -178,7 +179,8 @@ const AccommodationDetail = () => {
     const [guests, setGuests] = useState(1);
     const [totalPrice, setTotalPrice] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
-
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    
     useEffect(() => {
         const fetchAccommodation = async () => {
             try {
@@ -205,6 +207,25 @@ const AccommodationDetail = () => {
         setShowPopup(true);
     };
 
+    const deleteAccommodation = async () => {
+        try {
+            await apiService.deleteAccommodation(id);
+            alert('Accommodation deleted successfully');
+            navigate('/'); 
+        } catch (error) {
+            console.error('Error deleting accommodation:', error);
+            alert('There was an error deleting the accommodation. Please try again.');
+        }
+    };
+
+    const handleDeleteClick = () => {
+        setShowDeletePopup(true);
+    };
+
+    const cancelDelete = () => {
+        setShowDeletePopup(false);
+    };
+
     const confirmReservation = async () => {
         try {
             const reservationData = {
@@ -212,8 +233,9 @@ const AccommodationDetail = () => {
                 datumOdjave: endDate.toISOString().split('T')[0],
                 brojOsoba: guests,
                 smestajID: accommodation.smestajID,
+                userID: window.sessionStorage.getItem("userID")
             };
-            //console.log(reservationData);
+            console.log(reservationData);
             await apiService.createReservation(reservationData);
             setShowPopup(false);
             alert("Reservation successful!");
@@ -260,20 +282,47 @@ const AccommodationDetail = () => {
             </div>
             <div className="details-right">
                 <img src={accommodation.putanja} alt={accommodation.naziv} className="accommodation-detail-image" />
+                {window.sessionStorage.getItem("role") === "admin" ? (
+                    <>
+                    <button className='btnDelete' onClick={handleDeleteClick}>Delete this accommodation</button>
+                    {showDeletePopup && (
+                        <>
+                            <div className="overlay" onClick={cancelDelete}></div>
+                            <div className="delete-popup">
+                                <div className="delete-popup-content">
+                                    <p>Are you sure you want to delete this accommodation?</p>
+                                    <button onClick={deleteAccommodation}>Yes</button>
+                                    <button onClick={cancelDelete}>No</button>
+                                </div>
+                            </div>
+                        </>
+                      )}
+                    </>
+                ) : (
+                    <></>
+                )}
                 
             </div>
             {showPopup && (
-                <div className="reservation-popup">
-                    <h3>Confirm Reservation</h3>
-                    <p><strong>Accommodation:</strong> {accommodation.naziv}</p>
-                    <p><strong>Location:</strong> {accommodation.location?.grad}, {accommodation.location?.drzava}</p>
-                    <p><strong>Check-in:</strong> {startDate.toDateString()}</p>
-                    <p><strong>Check-out:</strong> {endDate.toDateString()}</p>
-                    <p><strong>Guests:</strong> {guests}</p>
-                    <p><strong>Total Price:</strong> €{totalPrice}</p>
-                    <button onClick={confirmReservation}>Confirm</button>
-                    <button onClick={() => setShowPopup(false)}>Cancel</button>
-                </div>
+                window.sessionStorage.getItem("token") ? (
+                    <div className="reservation-popup">
+                        <h3>Confirm Reservation</h3>
+                        <p><strong>Accommodation:</strong> {accommodation.naziv}</p>
+                        <p><strong>Location:</strong> {accommodation.location?.grad}, {accommodation.location?.drzava}</p>
+                        <p><strong>Check-in:</strong> {startDate.toDateString()}</p>
+                        <p><strong>Check-out:</strong> {endDate.toDateString()}</p>
+                        <p><strong>Guests:</strong> {guests}</p>
+                        <p><strong>Total Price:</strong> €{totalPrice}</p>
+                        <button onClick={confirmReservation}>Confirm</button>
+                        <button onClick={() => setShowPopup(false)}>Cancel</button>
+                    </div>
+                ) : (
+                    <div className="reservation-popup">
+                        <h3>Notification</h3>
+                        <p>You must log in to make a reservation.</p>
+                        <button onClick={() => setShowPopup(false)}>Close</button>
+                    </div>
+                )
             )}
         </div>
         <Footer />

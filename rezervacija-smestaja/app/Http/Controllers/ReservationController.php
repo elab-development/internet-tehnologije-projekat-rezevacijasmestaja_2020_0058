@@ -15,13 +15,14 @@ class ReservationController extends Controller
             'datumOdjave' => 'required|date|after:datumPrijave',
             'brojOsoba' => 'required|integer|min:1',
             'smestajID' => 'required|exists:accommodations,smestajID',
+            'userID' => 'required|exists:users,id'
         ]);
 
         $reservation = Reservation::create([
             'datumPrijave' => $request->datumPrijave,
             'datumOdjave' => $request->datumOdjave,
             'brojOsoba' => $request->brojOsoba,
-            'userID' => Auth::id(),
+            'userID' => $request->userID,
             'smestajID' => $request->smestajID,
         ]);
 
