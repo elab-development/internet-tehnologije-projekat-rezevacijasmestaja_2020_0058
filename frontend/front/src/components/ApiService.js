@@ -154,7 +154,7 @@ class ApiService {
   createReservation(reservation) {
     return axios.post("http://localhost:8000/api/reservations", reservation, {
       headers: {
-        Authorization: `Bearer ${this.getToken()}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
   }

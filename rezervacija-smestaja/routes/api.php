@@ -7,6 +7,7 @@ use App\Http\Controllers\AccommodationController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::get('/search', [SearchController::class, 'search']);
 Route::get('/locations', [LocationController::class, 'index']);
 Route::get('/locations/{id}', [LocationController::class, 'show']);
 
+//Route::post('/reservations', [ReservationController::class, 'store'])->middleware('auth:sanctum');
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -46,4 +49,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    //Route::get('/reservations', [ReservationController::class, 'index']);
+    Route::post('/reservations', [ReservationController::class, 'store']);
 });
