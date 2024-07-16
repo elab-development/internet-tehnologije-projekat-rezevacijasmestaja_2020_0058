@@ -39,11 +39,14 @@ const NavBar = () => {
       <div className="navContainer">
         <span className="logo"><img src={logo} alt="SuiteEscape logo" /></span>
         <div className="navItems">
-          <Link to="/add-listing" className="navButton">List Your Property</Link>
           {user ? (
-            <button className="logoutButton" onClick={handleLogout}>Logout</button>
+            <>
+              <Link to="/newAccommodation" className="navButton">List Your Property</Link>
+              <button className="logoutButton" onClick={handleLogout}>Logout</button>
+            </>
           ) : (
             <>
+              <Link to="/login" className="navButton">List Your Property</Link>
               <Link to="/login" className="navButton">Login</Link>
               <Link to="/register" className="navButton">Register</Link>
             </>

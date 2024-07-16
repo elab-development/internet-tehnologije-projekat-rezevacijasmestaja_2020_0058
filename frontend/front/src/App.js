@@ -7,6 +7,7 @@ import AccommodationDetail from './components/AccommodationDetail.jsx';
 import LocationAccommodations from './components/LocationAccommodations.jsx';
 import Login from './components/Login';
 import Register from './components/Register';
+import NewAccomodation from './components/NewAccomodation.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/locations/:locationId" element={<LocationAccommodations />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/newAccommodation" element={<NewAccomodation />} />
         </Routes>
     </Router>
 

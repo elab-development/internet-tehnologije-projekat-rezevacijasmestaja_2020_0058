@@ -8,6 +8,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AccommodationTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,15 +28,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users/{id}/reservations', [UserReservationController::class, 'index'])->name('users.reservations.index');
 
 Route::get('/accommodations', [AccommodationController::class, 'index']);
+Route::get('/accommodations3', [AccommodationController::class, 'get3Random']);
 Route::get('/accommodations/page', [AccommodationController::class, 'indexPaginate']);
 Route::get('/accommodations/{id}', [AccommodationController::class, 'show']);
 Route::get('/accommodations/location/{id}', [AccommodationController::class, 'getByLocationId']);
+Route::post('/accommodations', [AccommodationController::class, 'store']); /* Izmenjeno */
 
 Route::get('/unavailable-dates', [SearchController::class, 'getUnavailableDates']);
 Route::get('/search', [SearchController::class, 'search']);
 
 Route::get('/locations', [LocationController::class, 'index']);
+Route::get('/locations5', [LocationController::class, 'get5Random']);
 Route::get('/locations/{id}', [LocationController::class, 'show']);
+
+Route::get('/accommodation-types', [AccommodationTypeController::class, 'index']); // Izmenjeno
 
 //Route::post('/reservations', [ReservationController::class, 'store'])->middleware('auth:sanctum');
 

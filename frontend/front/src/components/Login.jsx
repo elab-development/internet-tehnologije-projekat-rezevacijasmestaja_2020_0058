@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { apiService } from './ApiService';
 import '../styles/Login.css';
 
@@ -40,6 +40,7 @@ const Login = () => {
           />
           <button type="submit">Login</button>
           {error && <p className="error">{error}</p>}
+        <p>You don't have an account? <Link to="/register">Register here</Link> </p> {/*Izmenjeno*/}
         </form>
       </div>
     </div>

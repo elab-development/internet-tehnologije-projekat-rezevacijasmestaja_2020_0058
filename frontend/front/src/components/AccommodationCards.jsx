@@ -9,20 +9,8 @@ const AccommodationCards = () => {
     useEffect(() => {
         const fetchAccommodations = async () => {
             try {
-                const response = await apiService.getAccommodations();
-                let nizKartice = [];
-                let nizIndexi = [];
-                for(let i = 0; i < 3; ){
-                    let rnd = Math.floor(Math.random() * response.data.length);
-                    if(nizIndexi.includes(rnd)){
-                        continue;
-                    }
-                    nizKartice[i] = response.data[rnd];
-                    nizIndexi[i] = rnd;
-                    i++;
-                }
-                //console.log(nizKartice);
-                setAccommodations(nizKartice);
+                const response = await apiService.get3RandomAccommodations();
+                setAccommodations(response.data);
             } catch (error) {
                 console.error('Error fetching accommodations:', error);
             }
@@ -37,6 +25,7 @@ const AccommodationCards = () => {
             <div className="accommodation-cards">
                 {accommodations.map((accommodation) => (
                     <AccommodationCard
+                        key={accommodation.smestajID}
                         id={accommodation.smestajID}
                         image={accommodation.putanja}
                         name={accommodation.naziv}

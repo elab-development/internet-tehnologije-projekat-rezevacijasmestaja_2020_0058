@@ -13,6 +13,20 @@ class LocationController extends Controller
         return response()->json($locations);
     }
 
+    public function get5Random()
+    {
+        // Izvlačenje 5 nasumičnih lokacija
+        $locations = Location::inRandomOrder()
+            ->take(5)
+            ->get();
+
+        if (is_null($locations) || $locations->isEmpty()) {
+            return response()->json('No locations found!', 404);
+        }
+
+        return response()->json($locations);
+    }
+
     public function show($id)
     {
         $location = Location::find($id);

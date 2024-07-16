@@ -49,7 +49,7 @@ class ApiService {
   setLoginInfo(role, email, id) {
     window.sessionStorage.setItem("role", role);
     window.sessionStorage.setItem("email", email);
-    window.sessionStorage.setItem("id", id);
+    window.sessionStorage.setItem("userID", id);
   }
 
   getLoginInfo() {
@@ -92,6 +92,10 @@ class ApiService {
     return axios.get("http://localhost:8000/api/accommodations");
   }
 
+  get3RandomAccommodations(){
+    return axios.get("http://localhost:8000/api/accommodations3")
+  }
+
   getAccommodationById(id) {
     return axios.get(`http://localhost:8000/api/accommodations/${id}`);
   }
@@ -107,6 +111,11 @@ class ApiService {
       },
     });
   }
+
+  addAccommodation(data) {
+    return axios.post('http://localhost:8000/api/accommodations', data);
+  }
+
 /*
   updateAccommodation(id, accommodation) {
     return axios.put(`http://localhost:8000/api/accommodations/${id}`, accommodation, {
@@ -142,6 +151,10 @@ class ApiService {
     return axios.get('http://localhost:8000/api/locations');
   }
 
+  get5RandomLocations(){
+    return axios.get("http://localhost:8000/api/locations5")
+  }
+
   // Reservations
   getReservations() {
     return axios.get("http://localhost:8000/api/reservations");
@@ -150,6 +163,10 @@ class ApiService {
   getReservationById(id) {
     return axios.get(`http://localhost:8000/api/reservations/${id}`);
   }*/
+
+    getAccommodationTypes() {
+      return axios.get('http://localhost:8000/api/accommodation-types');
+    }
 
   createReservation(reservation) {
     return axios.post("http://localhost:8000/api/reservations", reservation, {

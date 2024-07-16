@@ -167,6 +167,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { apiService } from './ApiService';
 import '../styles/AccommodationDetail.css';
 import NavBar from './NavBar.jsx'
+import Footer from './Footer.jsx';
 
 const AccommodationDetail = () => {
     const { id } = useParams();
@@ -275,6 +276,7 @@ const AccommodationDetail = () => {
                 </div>
             )}
         </div>
+        <Footer />
         </div>
         
     );

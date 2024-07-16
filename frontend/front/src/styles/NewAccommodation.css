@@ -1,0 +1,58 @@
+/* src/components/NewAccommodation.css */
+.new-accommodation-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #d5ffe4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-accommodation-form h2 {
+  color: #6f61c0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.new-accommodation-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-accommodation-form input,
+.new-accommodation-form textarea,
+.new-accommodation-form select,
+.new-accommodation-form button {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #a084e8;
+  border-radius: 4px;
+  font-family: inherit; /* Ensures consistent font across inputs */
+}
+
+.new-accommodation-form input:focus,
+.new-accommodation-form textarea:focus,
+.new-accommodation-form select:focus {
+  border-color: #8be8e5;
+  outline: none;
+}
+
+.new-accommodation-form textarea.description {
+  resize: none; /* Prevents resizing */
+}
+
+.new-accommodation-form button {
+  background-color: #6f61c0;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-accommodation-form button:hover {
+  background-color: #a084e8;
+}
+
+.new-accommodation-form p {
+  color: red;
+  margin: 0;
+}

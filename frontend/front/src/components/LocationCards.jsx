@@ -9,7 +9,7 @@ const LocationCards = () => {
     useEffect(() => {
         const fetchLocations = async () => {
             try {
-                const response = await apiService.getLocations();
+                const response = await apiService.get5RandomLocations();
                 setLocations(response.data);
             } catch (error) {
                 console.error('Error fetching locations:', error);
@@ -25,6 +25,7 @@ const LocationCards = () => {
             <div className="location-cards-row">
                 {locations.slice(0, 3).map((location) => (
                     <LocationCard
+                        key={location.lokacijaID}
                         locationId={location.lokacijaID}
                         image={location.putanja}
                         city={location.grad}
@@ -36,6 +37,7 @@ const LocationCards = () => {
             <div className="location-cards-row">
                 {locations.slice(3, 5).map((location) => (
                     <LocationCard
+                        key={location.lokacijaID}
                         locationId={location.lokacijaID}
                         image={location.putanja}
                         city={location.grad}

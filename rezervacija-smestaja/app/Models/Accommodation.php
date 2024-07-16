@@ -21,7 +21,7 @@ class Accommodation extends Model
         'udaljenostOdCentra',
         'putanja',
         'tipSmestajaID',
-        'user' //od strane koga je kreiran smestaj
+        'userID' //od strane koga je kreiran smestaj
     ];
 
     // Relacija sa lokacijom smeštaja

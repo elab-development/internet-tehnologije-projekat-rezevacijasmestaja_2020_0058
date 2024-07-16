@@ -22,6 +22,22 @@ class AccommodationController extends Controller
         return response()->json(new AccommodationCollection($accommodations));
     }
 
+    public function get3Random()
+    {
+        // Izvlačenje 3 nasumična smeštaja zajedno sa povezanim modelima
+        $accommodations = Accommodation::with(['user', 'location', 'accommodationType'])
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        if (is_null($accommodations) || $accommodations->isEmpty()) {
+            return response()->json('No accommodations found!', 404);
+        }
+
+        return response()->json(new AccommodationCollection($accommodations));
+    }
+
+
     public function indexPaginate()
     {
         $accommodation = Accommodation::all();
@@ -45,7 +61,37 @@ class AccommodationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'naziv' => 'required|string|max:255',
+            'opis' => 'required|string',
+            'lokacijaID' => 'required|exists:locations,lokacijaID',
+            'adresa' => 'required|string|max:255',
+            'brojKreveta' => 'required|integer|min:1',
+            'maksimalanBrojOsoba' => 'required|integer|min:1',
+            'cenaPoNoci' => 'required|numeric|min:0.01',
+            'udaljenostOdCentra' => 'required|numeric|min:0.01',
+            'putanja' => 'required|url',
+            'tipSmestajaID' => 'required|exists:accommodation_types,tipSmestajaID',
+            'userID' => 'required|exists:users,id'
+        ]);
+
+        // $accommodation = Accommodation::create([
+        //     'naziv' => $validatedData['naziv'],
+        //     'opis' => $validatedData['opis'],
+        //     'lokacijaID' => $validatedData['lokacijaID'],
+        //     'adresa' => $validatedData['adresa'],
+        //     'brojKreveta' => $validatedData['brojKreveta'],
+        //     'maksimalanBrojOsoba' => $validatedData['maksimalanBrojOsoba'],
+        //     'cenaPoNoci' => $validatedData['cenaPoNoci'],
+        //     'udaljenostOdCentra' => $validatedData['udaljenostOdCentra'],
+        //     'putanja' => $validatedData['putanja'],
+        //     'userID' => $validatedData['userID'],
+        //     'tipSmestajaID' => $validatedData['tipSmestajaID']
+        // ]);
+
+        $accommodation = Accommodation::create($validatedData);
+
+        return response()->json($accommodation, 201);
     }
 
     /**

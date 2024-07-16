@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { apiService } from './ApiService';
 import '../styles/Register.css';
 
@@ -48,6 +48,7 @@ const Register = () => {
           />
           <button type="submit">Register</button>
           {error && <p className="error">{error}</p>}
+          <p>Already have an account? <Link to="/login">Log in</Link></p>
         </form>
       </div>
     </div>
