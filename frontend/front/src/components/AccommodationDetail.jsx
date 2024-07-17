@@ -180,6 +180,7 @@ const AccommodationDetail = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [reservedDates, setReservedDates] = useState([]);
     
     useEffect(() => {
         const fetchAccommodation = async () => {
@@ -193,8 +194,26 @@ const AccommodationDetail = () => {
             }
         };
 
+        const fetchReservedDates = async () => {
+            try {
+                const response = await apiService.getReservedDates(id);
+                const dates = response.data.map(reservation => ({
+                    start: new Date(reservation.datumPrijave),
+                    end: new Date(reservation.datumOdjave)
+                }));
+                setReservedDates(dates);
+            } catch (error) {
+                console.error('Error fetching reserved dates:', error);
+            }
+        };
+
         fetchAccommodation();
+        fetchReservedDates();
     }, [id]);
+
+    const isDateDisabled = date => {
+        return reservedDates.some(({ start, end }) => date >= start && date <= end);
+    };
 
     const handleReserve = () => {
         if (!startDate || !endDate || guests < 1) {
@@ -273,8 +292,20 @@ const AccommodationDetail = () => {
                 </div>
                 
                 <div className="reservation-form">
-                    <DatePicker className="datePicker" selected={startDate} onChange={date => setStartDate(date)} placeholderText="Check in" />
-                    <DatePicker className="datePicker" selected={endDate} onChange={date => setEndDate(date)} placeholderText="Check out" minDate={startDate} />
+                    <DatePicker className="datePicker" selected={startDate} onChange={date => setStartDate(date)} placeholderText="Check in" minDate={new Date()} excludeDates={reservedDates.flatMap(({start, end}) => {
+                        const dates =[];
+                        for(let d = new Date(start); d <= end; d.setDate(d.getDate()+1)){
+                            dates.push(new Date(d));
+                        }
+                        return dates;
+                    })}/>
+                    <DatePicker className="datePicker" selected={endDate} onChange={date => setEndDate(date)} placeholderText="Check out" minDate={startDate || new Date()} excludeDates={reservedDates.flatMap(({start, end}) => {
+                        const dates =[];
+                        for(let d = new Date(start); d <= end; d.setDate(d.getDate()+1)){
+                            dates.push(new Date(d));
+                        }
+                        return dates;
+                    })}/>
                     <input type="number" value={guests} onChange={e => setGuests(e.target.value)} min="1" placeholder="Number of guests" />
                     <button className="reserve-button" onClick={handleReserve}>Reserve</button>
                     <p><strong>Total Price:</strong> €{totalPrice}</p>

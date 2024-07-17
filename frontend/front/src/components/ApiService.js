@@ -175,8 +175,12 @@ class ApiService {
     }
 
     cancelReservation(reservationID){
-      console.log("apiservice: " + reservationID);
+      // console.log("apiservice: " + reservationID);
       return axios.delete(`http://localhost:8000/api/reservations/${reservationID}`);
+    }
+
+    getReservedDates(smestajID){
+      return axios.get(`http://localhost:8000/api/reservations/${smestajID}/dates`)
     }
 
   createReservation(reservation) {

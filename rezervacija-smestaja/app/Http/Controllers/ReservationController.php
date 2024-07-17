@@ -52,4 +52,14 @@ class ReservationController extends Controller
 
         return response()->json(['message' => 'Reservation deleted successfully'], 200);
     }
+
+    public function getReservedDates($smestajID)
+    {
+        try {
+            $reservations = Reservation::where('smestajID', $smestajID)->get(['datumPrijave', 'datumOdjave']);
+            return response()->json($reservations);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
