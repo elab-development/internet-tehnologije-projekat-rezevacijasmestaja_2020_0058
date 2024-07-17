@@ -28,4 +28,28 @@ class ReservationController extends Controller
 
         return response()->json($reservation, 201);
     }
+
+    public function getUserReservations($userId, Request $request)
+    {
+        $perPage = $request->input('per_page', 5); // Broj rezervacija po stranici, podrazumevano 5
+        $reservations = Reservation::where('userID', $userId)
+            ->with('accommodation.location')
+            ->orderBy('datumPrijave', 'asc')
+            ->paginate($perPage);
+
+        return response()->json($reservations);
+    }
+
+    public function destroy($id)
+    {
+        $reservation = Reservation::find($id);
+
+        if (!$reservation) {
+            return response()->json(['message' => 'Reservation not found'], 404);
+        }
+
+        $reservation->delete();
+
+        return response()->json(['message' => 'Reservation deleted successfully'], 200);
+    }
 }

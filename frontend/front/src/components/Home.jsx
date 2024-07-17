@@ -11,7 +11,7 @@ const Home= () =>{
         <div className="Homes">
         <NavBar />
         <Header />
-        {/* <Filters /> */}
+        <Filters />
         <AccommodationCards/>
         <LocationCards/>
         <Footer />

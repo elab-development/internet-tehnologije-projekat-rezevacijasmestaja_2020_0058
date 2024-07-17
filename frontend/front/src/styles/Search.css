@@ -43,7 +43,7 @@
 .input {
   padding: 10px;
   font-size: 16px;
-  margin: 0px 10px 0px 10px; /* izmenjeno */
+  margin: 0px 10px 0px 0px;
   height: 1.4rem;
   border-radius: 0.2rem;
   border-color: rgba(0, 0, 0, 0.45);
@@ -61,7 +61,7 @@
   flex-wrap: wrap;
 }
 
-.datePicker {
+.react-datepicker__input-container input {
   margin-right: 10px;
   font-size: 16px;
   height: 1.4rem;
@@ -124,39 +124,4 @@
     margin-left: 0;
     margin-top: 10px;
   }
-}
-
-/* Izmenjeno */
-
-.filters-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 20px;
-  margin-left: 16rem;
-  margin-right: 15rem;
-  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.6);
-}
-
-.filter-icon {
-  text-decoration: none;
-  color: #6f61c0;
-  font-size: 2rem;
-  transition: color 0.3s ease;
-  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.filter-icon:hover {
-  color: #8be8e5;
-  transform: scale(1.05);
-}
-
-.filter-text {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #6f61c0;
 }

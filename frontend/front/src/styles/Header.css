@@ -125,7 +125,7 @@
   box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
 }
 
-.guestButton:hover{
+.guestButton:hover {
   transform: scale(1.05);
-  background-color:rgba(139, 232, 229,0.2);
+  background-color: rgba(139, 232, 229, 0.2);
 }

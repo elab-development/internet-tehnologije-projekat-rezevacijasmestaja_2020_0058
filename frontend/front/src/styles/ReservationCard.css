@@ -1,0 +1,26 @@
+.reservation-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.reservation-card img {
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.reservation-card .reservation-info {
+  padding: 1rem;
+}
+
+.reservation-card:hover {
+  transform: scale(1.05);
+}
+
+.reservation-info h2 {
+  color: #6f61c0;
+}

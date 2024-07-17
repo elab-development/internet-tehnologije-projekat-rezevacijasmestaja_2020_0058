@@ -1,0 +1,105 @@
+.my-reservations {
+  padding: 2rem;
+  background-color: #d5ffe4;
+}
+
+.reservations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pagination button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #6f61c0;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.pagination button:hover {
+  background-color: #a084e8;
+}
+
+.reservation-details {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-details img {
+  width: 100%;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reservation-details button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #6f61c0;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.reservation-details button:hover {
+  background-color: #a084e8;
+}
+
+.cancel-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cancel-popup-content {
+  margin-bottom: 1rem;
+}
+
+.cancel-popup-content button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #6f61c0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-popup-content button:hover {
+  background-color: #a084e8;
+}
+
+.cancel-popup-content button:last-of-type {
+  background-color: #8be8e5;
+  color: black;
+}
+
+.cancel-popup-content button:last-of-type:hover {
+  background-color: #d5ffe4;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

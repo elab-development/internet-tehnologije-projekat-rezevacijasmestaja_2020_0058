@@ -47,6 +47,8 @@ Route::get('/accommodation-types', [AccommodationTypeController::class, 'index']
 
 //Route::post('/reservations', [ReservationController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/reservations', [ReservationController::class, 'store']);
+Route::get('/reservations/{userId}', [ReservationController::class, 'getUserReservations']);
+Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

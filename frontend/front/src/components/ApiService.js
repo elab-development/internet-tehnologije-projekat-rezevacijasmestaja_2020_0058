@@ -160,9 +160,7 @@ class ApiService {
   }
 
   // Reservations
-  getReservations() {
-    return axios.get("http://localhost:8000/api/reservations");
-  }
+  
 /*
   getReservationById(id) {
     return axios.get(`http://localhost:8000/api/reservations/${id}`);
@@ -170,6 +168,15 @@ class ApiService {
 
     getAccommodationTypes() {
       return axios.get('http://localhost:8000/api/accommodation-types');
+    }
+
+    getReservations(userID, page = 1, perPage = 5) {
+      return axios.get(`http://localhost:8000/api/reservations/${userID}`, {params: {page, per_page: perPage}});
+    }
+
+    cancelReservation(reservationID){
+      console.log("apiservice: " + reservationID);
+      return axios.delete(`http://localhost:8000/api/reservations/${reservationID}`);
     }
 
   createReservation(reservation) {

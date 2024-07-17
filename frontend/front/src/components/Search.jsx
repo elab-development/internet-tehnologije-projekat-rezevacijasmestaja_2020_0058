@@ -99,7 +99,7 @@ const SearchComponent = () => {
         <FaSearch className="searchIcon" />
       </button>
 
-      <Filters /> {/*Izmenjeno*/}
+      {/* <Filters /> Izmenjeno */}
 
       {errorMessage && <p>{errorMessage}</p>}
       <div className="results">
