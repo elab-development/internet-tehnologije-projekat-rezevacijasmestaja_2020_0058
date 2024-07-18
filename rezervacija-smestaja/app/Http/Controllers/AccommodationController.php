@@ -94,6 +94,16 @@ class AccommodationController extends Controller
         return response()->json($accommodation);
     }
 
+    public function getByUserId($userID)
+    {
+        $accommodations = Accommodation::where('userID', $userID)->with(['location', 'accommodationType'])->get();
+
+        // if (is_null($accommodations) || count($accommodations) === 0) {
+        //     return response()->json('No accommodations found for this user', 404);
+        // }
+        return response()->json(new AccommodationCollection($accommodations));
+    }
+
     public function getByLocationId($id)
     {
         $accommodations = Accommodation::where('lokacijaID', $id)->with(['location', 'accommodationType'])->get();

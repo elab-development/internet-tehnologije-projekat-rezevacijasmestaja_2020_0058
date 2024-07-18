@@ -42,7 +42,7 @@ const NavBar = () => {
           <Link to="/" className="navButton">Home</Link>
           {user ? (
             <>
-              <Link to="/" className="navButton">My Accommodations</Link>
+              <Link to="/my-accommodations" className="navButton">My Accommodations</Link>
               <Link to="/reservations" className="navButton">My Reservations</Link>
               <Link to="/newAccommodation" className="navButton">List Your Property</Link>
               <button className="logoutButton" onClick={handleLogout}>Logout</button>

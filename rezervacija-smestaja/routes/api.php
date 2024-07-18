@@ -9,6 +9,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AccommodationTypeController;
+use App\Models\Accommodation;
 use App\Models\Reservation;
 
 /*
@@ -33,8 +34,12 @@ Route::get('/accommodations3', [AccommodationController::class, 'get3Random']);
 Route::get('/accommodations/page', [AccommodationController::class, 'indexPaginate']);
 Route::get('/accommodations/{id}', [AccommodationController::class, 'show']);
 Route::get('/accommodations/location/{id}', [AccommodationController::class, 'getByLocationId']);
-Route::post('/accommodations', [AccommodationController::class, 'store']); /* Izmenjeno */
+Route::post('/accommodations', [AccommodationController::class, 'store']);
 Route::delete('/accommodations/{id}', [AccommodationController::class, 'destroy']);
+Route::get('/accommodations/user/{userId}', [AccommodationController::class, 'getByUserId']);
+// Route::middleware('auth:api')->group(function () {
+//     Route::get('/accommodations/user/{userId}', [AccommodationController::class, 'getByUserId']);
+// });
 
 Route::get('/unavailable-dates', [SearchController::class, 'getUnavailableDates']);
 Route::get('/search', [SearchController::class, 'search']);

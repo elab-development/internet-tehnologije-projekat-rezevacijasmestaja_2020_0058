@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import NewAccomodation from './components/NewAccomodation.jsx';
 import Reservations from './components/Reservations.jsx';
+import MyAccommodations from './components/MyAccommodations.jsx';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/newAccommodation" element={<NewAccomodation />} />
           <Route path="/reservations" element={<Reservations />} />
+          <Route path="/my-accommodations" element={<MyAccommodations />} />
         </Routes>
     </Router>
 

@@ -92,6 +92,10 @@ class ApiService {
     return axios.get("http://localhost:8000/api/accommodations");
   }
 
+  getAccommodationsByUserId(userId){
+    return axios.get(`http://localhost:8000/api/accommodations/user/${userId}`);
+  }
+
   get3RandomAccommodations(){
     return axios.get("http://localhost:8000/api/accommodations3")
   }

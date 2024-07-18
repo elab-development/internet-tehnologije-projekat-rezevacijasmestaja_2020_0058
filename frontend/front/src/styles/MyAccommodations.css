@@ -1,0 +1,43 @@
+.my-accommodations {
+  padding: 20px;
+  background-color: #d5ffe4;
+  min-height: 100vh;
+}
+
+.my-accommodations h1 {
+  color: #6f61c0;
+}
+
+.accommodation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* .accommodation-card {
+  background-color: #a084e8;
+  border: 2px solid #6f61c0;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 300px;
+}
+
+.accommodation-card .accommodation-price {
+  color: #d5ffe4;
+} */
+
+/*
+.accommodation-card img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.accommodation-card .details {
+  padding: 10px;
+  background-color: #8be8e5;
+  border-radius: 0 0 10px 10px;
+}
+
+.accommodation-card .details p {
+  margin: 5px 0;
+} */

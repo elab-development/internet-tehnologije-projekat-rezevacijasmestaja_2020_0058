@@ -161,7 +161,7 @@
 // export default AccommodationDetail;
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { apiService } from './ApiService';
@@ -172,6 +172,7 @@ import Footer from './Footer.jsx';
 const AccommodationDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const [accommodation, setAccommodation] = useState(null);
     const [loading, setLoading] = useState(true);
     const [startDate, setStartDate] = useState(null);
@@ -181,6 +182,7 @@ const AccommodationDetail = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [reservedDates, setReservedDates] = useState([]);
+    const isMyAccommodation = location.state?.isMyAccommodation || false;
     
     useEffect(() => {
         const fetchAccommodation = async () => {
@@ -222,7 +224,7 @@ const AccommodationDetail = () => {
         }
 
         const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-        setTotalPrice(nights * accommodation.cenaPoNoci);
+        isMyAccommodation ? setTotalPrice(0) : setTotalPrice(nights * accommodation.cenaPoNoci);
         setShowPopup(true);
     };
 
@@ -239,6 +241,10 @@ const AccommodationDetail = () => {
 
     const handleDeleteClick = () => {
         setShowDeletePopup(true);
+    };
+
+    const handleUpdateClick = () => {
+        // Dodaj izmenu
     };
 
     const cancelDelete = () => {
@@ -313,7 +319,7 @@ const AccommodationDetail = () => {
             </div>
             <div className="details-right">
                 <img src={accommodation.putanja} alt={accommodation.naziv} className="accommodation-detail-image" />
-                {window.sessionStorage.getItem("role") === "admin" ? (
+                {window.sessionStorage.getItem("role") === "admin" || isMyAccommodation ? (
                     <>
                     <button className='btnDelete' onClick={handleDeleteClick}>Delete this accommodation</button>
                     {showDeletePopup && (
@@ -330,6 +336,11 @@ const AccommodationDetail = () => {
                       )}
                     </>
                 ) : (
+                    <></>
+                )}
+                {isMyAccommodation ? (
+                    <button className='btnUpdate' onClick={handleUpdateClick}>Update this accommodation</button>
+                ):(
                     <></>
                 )}
                 

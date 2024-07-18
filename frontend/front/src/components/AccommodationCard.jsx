@@ -1,9 +1,13 @@
 import React from 'react';
 import '../styles/AccommodationCard.css';
+import { useNavigate } from 'react-router-dom';
 
-const AccommodationCard = ({ id, image, name, location, price }) => {
+const AccommodationCard = ({ id, image, name, location, price, isMyAccommodation }) => {
+    const navigate = useNavigate();
+    
     const handleClick = () => {
-        window.open(`/accommodations/${id}`, '_blank');
+        // window.open(`/accommodations/${id}`, '_blank');
+        navigate(`/accommodations/${id}`, {state: {isMyAccommodation}});
     };
 
     const locationText = location ? `${location.grad}, ${location.drzava}` : 'Location not available';
