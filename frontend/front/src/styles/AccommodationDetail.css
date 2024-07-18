@@ -277,10 +277,10 @@
 .btnUpdate {
   margin-top: 2rem;
   padding: 1rem;
-  background-color: rgba(103, 3, 3, 0.473);
+  background-color: rgba(2, 80, 132, 0.6);
   border-radius: 1rem;
-  border: solid rgb(59, 0, 0);
-  color: rgb(59, 0, 0);
+  border: solid rgba(0, 47, 78, 0.728);
+  color: rgba(0, 47, 78, 0.728);
   font-weight: bold;
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out,
     color 0.3s ease-in-out, border 0.3s ease-in-out;
@@ -288,9 +288,9 @@
 
 .btnUpdate:hover {
   transform: scale(1.05);
-  background-color: rgba(103, 3, 3, 0.6);
-  color: rgb(154, 1, 1);
-  border: solid rgb(154, 1, 1);
+  background-color: rgba(2, 73, 121, 0.678);
+  color: rgba(0, 31, 52, 0.799);
+  border: solid rgba(0, 31, 52, 0.799);
   cursor: pointer;
 }
 

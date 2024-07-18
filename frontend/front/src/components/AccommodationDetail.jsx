@@ -244,7 +244,7 @@ const AccommodationDetail = () => {
     };
 
     const handleUpdateClick = () => {
-        // Dodaj izmenu
+        navigate('/edit-accommodation', {state: {accommodation}});
     };
 
     const cancelDelete = () => {

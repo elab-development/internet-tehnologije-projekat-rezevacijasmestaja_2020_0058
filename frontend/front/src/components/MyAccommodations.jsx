@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AccommodationCard from './AccommodationCard'; 
 import '../styles/MyAccommodations.css';
 import { apiService } from './ApiService';
+import NavBar from './NavBar';
 
 const MyAccommodations = () => {
     const [accommodations, setAccommodations] = useState([]);
@@ -29,22 +30,25 @@ const MyAccommodations = () => {
     }
 
     return (
-        <div className="my-accommodations">
-            <h1>My Accommodations</h1>
-            <div className="accommodation-cards">
-                {accommodations.map(accommodation => (
-                    <AccommodationCard
-                        key={accommodation.smestajID}
-                        id={accommodation.smestajID}
-                        image={accommodation.putanja}
-                        name={accommodation.naziv}
-                        location={accommodation.lokacija}
-                        price={accommodation.cenaPoNoci}
-                        isMyAccommodation={true}
-                    />
-                ))}
+        <>
+            <NavBar />
+            <div className="my-accommodations">
+                <h1>My Accommodations</h1>
+                <div className="accommodation-cards">
+                    {accommodations.map(accommodation => (
+                        <AccommodationCard
+                            key={accommodation.smestajID}
+                            id={accommodation.smestajID}
+                            image={accommodation.putanja}
+                            name={accommodation.naziv}
+                            location={accommodation.lokacija}
+                            price={accommodation.cenaPoNoci}
+                            isMyAccommodation={true}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
