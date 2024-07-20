@@ -3,11 +3,12 @@ import { apiService } from './ApiService';
 import ReservationCard from './ReservationCard';
 import '../styles/Reservations.css';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [reservationsPerPage] = useState(5);
+  const [reservationsPerPage] = useState(8);
   const [totalReservations, setTotalReservations] = useState(0);
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -102,6 +103,7 @@ const cancelDelete = () => {
             </>
         )}
         </div>
+        <Footer />
     </>
   );
 };

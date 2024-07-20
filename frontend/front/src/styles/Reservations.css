@@ -6,7 +6,14 @@
 .reservations-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .pagination button {
