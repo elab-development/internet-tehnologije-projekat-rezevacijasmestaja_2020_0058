@@ -125,9 +125,26 @@ class AccommodationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Accommodation $accommodation)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'naziv' => 'required|string|max:255',
+            'opis' => 'required|string',
+            'lokacijaID' => 'required|integer|exists:locations,lokacijaID',
+            'adresa' => 'required|string|max:255',
+            'brojKreveta' => 'required|integer|min:1',
+            'maksimalanBrojOsoba' => 'required|integer|min:1',
+            'cenaPoNoci' => 'required|numeric|min:0',
+            'udaljenostOdCentra' => 'required|numeric|min:0',
+            'putanja' => 'required|string|max:255',
+            'tipSmestajaID' => 'required|integer|exists:accommodation_types,tipSmestajaID',
+            'userID' => 'required|integer|exists:users,id',
+        ]);
+
+        $accommodation = Accommodation::findOrFail($id);
+        $accommodation->update($validatedData);
+
+        return response()->json(['message' => 'Accommodation updated successfully', 'accommodation' => $accommodation], 200);
     }
 
     /**

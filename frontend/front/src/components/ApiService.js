@@ -124,6 +124,10 @@ class ApiService {
     return axios.post('http://localhost:8000/api/accommodations', data);
   }
 
+  updateAccommodation(id, data){
+    return axios.put(`http://localhost:8000/api/accommodations/${id}`, data);
+  }
+
 /*
   updateAccommodation(id, accommodation) {
     return axios.put(`http://localhost:8000/api/accommodations/${id}`, accommodation, {

@@ -3,6 +3,7 @@ import AccommodationCard from './AccommodationCard';
 import '../styles/MyAccommodations.css';
 import { apiService } from './ApiService';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 const MyAccommodations = () => {
     const [accommodations, setAccommodations] = useState([]);
@@ -48,6 +49,7 @@ const MyAccommodations = () => {
                     ))}
                 </div>
             </div>
+            <Footer />            
         </>
     );
 };

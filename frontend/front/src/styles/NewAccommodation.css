@@ -1,4 +1,3 @@
-/* src/components/NewAccommodation.css */
 .new-accommodation-form {
   max-width: 600px;
   margin: auto;
@@ -6,6 +5,8 @@
   background-color: #d5ffe4;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .new-accommodation-form h2 {
@@ -41,9 +42,22 @@
   resize: none; /* Prevents resizing */
 }
 
-.new-accommodation-form button {
+.form-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.form-buttons .btnCreate {
   background-color: #6f61c0;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 1rem;
+}
+
+.form-buttons .btnBack {
+  background-color: white;
+  color: #6f61c0;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

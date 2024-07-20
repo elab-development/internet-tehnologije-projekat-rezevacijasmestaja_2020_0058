@@ -7,7 +7,7 @@ import AccommodationDetail from './components/AccommodationDetail.jsx';
 import LocationAccommodations from './components/LocationAccommodations.jsx';
 import Login from './components/Login';
 import Register from './components/Register';
-import NewAccomodation from './components/NewAccomodation.jsx';
+import NewAccommodation from './components/NewAccommodation.jsx';
 import Reservations from './components/Reservations.jsx';
 import MyAccommodations from './components/MyAccommodations.jsx';
 
@@ -20,7 +20,8 @@ function App() {
           <Route path="/locations/:locationId" element={<LocationAccommodations />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/newAccommodation" element={<NewAccomodation />} />
+          <Route path="/newAccommodation" element={<NewAccommodation />} />
+          <Route path="/edit-accommodation" element={<NewAccommodation />} />
           <Route path="/reservations" element={<Reservations />} />
           <Route path="/my-accommodations" element={<MyAccommodations />} />
         </Routes>
