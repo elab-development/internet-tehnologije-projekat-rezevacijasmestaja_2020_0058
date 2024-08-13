@@ -3,6 +3,8 @@ import AccommodationCard from './AccommodationCard';
 import { useParams } from 'react-router-dom';
 import { apiService } from './ApiService';
 import '../styles/LocationAccommodations.css';
+import NavBar from './NavBar';
+import Footer from './Footer';
 
 const LocationAccommodations = () => {
     const { locationId } = useParams();
@@ -29,6 +31,8 @@ const LocationAccommodations = () => {
     }
 
     return (
+        <>
+        <NavBar/>
         <div className="location-accommodations-container">
             <h2>Accommodations in this location</h2>
             <div className="location-accommodations">
@@ -48,6 +52,8 @@ const LocationAccommodations = () => {
                 )}
             </div>
         </div>
+        <Footer/>
+        </>
     );
 };
 
