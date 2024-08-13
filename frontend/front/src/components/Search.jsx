@@ -5,7 +5,6 @@ import { FaSearch } from 'react-icons/fa';
 import '../styles/Search.css';
 import { apiService } from './ApiService';
 import AccommodationCard from './AccommodationCard';
-import Filters from './Filters';
 
 const SearchComponent = () => {
 
@@ -98,8 +97,6 @@ const SearchComponent = () => {
       <button className="searchButton" onClick={handleSearch}>
         <FaSearch className="searchIcon" />
       </button>
-
-      {/* <Filters /> Izmenjeno */}
 
       {errorMessage && <p>{errorMessage}</p>}
       <div className="results">

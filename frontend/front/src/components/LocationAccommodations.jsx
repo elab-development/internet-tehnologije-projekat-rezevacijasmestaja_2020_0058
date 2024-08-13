@@ -48,7 +48,7 @@ const LocationAccommodations = () => {
                         />
                     ))
                 ) : (
-                    <p>No accommodations found for this location.</p>
+                    <p className="no-accommodations">No accommodations found for this location.</p>
                 )}
             </div>
         </div>
