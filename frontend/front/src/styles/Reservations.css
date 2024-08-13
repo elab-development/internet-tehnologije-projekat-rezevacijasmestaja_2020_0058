@@ -1,13 +1,14 @@
 .my-reservations {
   padding: 2rem;
   background-color: #d5ffe4;
+  color:#6f61c0;
 }
 
 .reservations-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .pagination {
@@ -32,16 +33,25 @@
 }
 
 .reservation-details {
-  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  padding: 5rem;
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: flex-start;
 }
 
 .reservation-details img {
-  width: 100%;
+  max-height: 300px;
+  max-width: 500px;
+  object-fit: cover;
   border-radius: 1rem;
   margin-bottom: 1rem;
+}
+
+.reservation-details div {
+  flex: 1;
 }
 
 .reservation-details button {

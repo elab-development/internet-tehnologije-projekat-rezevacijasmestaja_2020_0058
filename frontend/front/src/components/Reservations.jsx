@@ -65,28 +65,30 @@ const cancelDelete = () => {
         <div className="my-reservations">
         {selectedReservation ? (
             <div className="reservation-details">
-            <h2>Reservation Details</h2>
             <img src={selectedReservation.accommodation.putanja} alt={selectedReservation.accommodation.naziv} />
-            <p><strong>Accommodation:</strong> {selectedReservation.accommodation.naziv}</p>
-            <p><strong>Location:</strong> {selectedReservation.accommodation.location.grad}, {selectedReservation.accommodation.location.drzava}</p>
-            <p><strong>Check-in:</strong> {new Date(selectedReservation.datumPrijave).toLocaleDateString()}</p>
-            <p><strong>Check-out:</strong> {new Date(selectedReservation.datumOdjave).toLocaleDateString()}</p>
-            <p><strong>Guests:</strong> {selectedReservation.brojOsoba}</p>
-            <button onClick={handleCancelClick}>Cancel Reservation</button>
-            {showDeletePopup && (
-                        <>
-                            <div className="overlay" onClick={cancelDelete}></div>
-                            <div className="cancel-popup">
-                                <div className="cancel-popup-content">
-                                    <p>Are you sure you want to cancel this reservation?</p>
-                                    <button onClick={() => handleCancelReservation(selectedReservation.rezervacijaID)}>Yes</button>
-                                    <button onClick={cancelDelete}>No</button>
-                                </div>
-                            </div>
-                        </>
-                      )}
-            <button onClick={() => setSelectedReservation(null)}>Back</button>
+            <div>
+              <h2>Reservation Details</h2>
+              <p><strong>Accommodation:</strong> {selectedReservation.accommodation.naziv}</p>
+              <p><strong>Location:</strong> {selectedReservation.accommodation.location.grad}, {selectedReservation.accommodation.location.drzava}</p>
+              <p><strong>Check-in:</strong> {new Date(selectedReservation.datumPrijave).toLocaleDateString()}</p>
+              <p><strong>Check-out:</strong> {new Date(selectedReservation.datumOdjave).toLocaleDateString()}</p>
+              <p><strong>Guests:</strong> {selectedReservation.brojOsoba}</p>
+              <button onClick={handleCancelClick}>Cancel Reservation</button>
+              {showDeletePopup && (
+                <>
+                  <div className="overlay" onClick={cancelDelete}></div>
+                  <div className="cancel-popup">
+                    <div className="cancel-popup-content">
+                      <p>Are you sure you want to cancel this reservation?</p>
+                      <button onClick={() => handleCancelReservation(selectedReservation.rezervacijaID)}>Yes</button>
+                      <button onClick={cancelDelete}>No</button>
+                    </div>
+                  </div>
+                </>
+              )}
+              <button onClick={() => setSelectedReservation(null)}>Back</button>
             </div>
+          </div>
         ) : (
             <>
             <h2>My Reservations</h2>
