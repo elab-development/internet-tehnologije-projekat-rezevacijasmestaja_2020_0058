@@ -55,7 +55,7 @@ class ApiService {
   getLoginInfo() {
     const role = window.sessionStorage.getItem("role");
     const email = window.sessionStorage.getItem("email");
-    const id = window.sessionStorage.getItem("id");
+    const id = window.sessionStorage.getItem("userID");
 
     return { role, email, id };
   } 
@@ -64,7 +64,7 @@ class ApiService {
     window.sessionStorage.removeItem("token");
     window.sessionStorage.removeItem("role");
     window.sessionStorage.removeItem("email");
-    window.sessionStorage.removeItem("id");
+    window.sessionStorage.removeItem("userID");
   }
 
  /* getLoggedInUser() {

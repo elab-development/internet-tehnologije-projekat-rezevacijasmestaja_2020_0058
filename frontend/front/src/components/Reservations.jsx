@@ -73,7 +73,7 @@ const cancelDelete = () => {
               <p><strong>Check-in:</strong> {new Date(selectedReservation.datumPrijave).toLocaleDateString()}</p>
               <p><strong>Check-out:</strong> {new Date(selectedReservation.datumOdjave).toLocaleDateString()}</p>
               <p><strong>Guests:</strong> {selectedReservation.brojOsoba}</p>
-              <button onClick={handleCancelClick}>Cancel Reservation</button>
+              <button style={{margin: '0 1rem 0 0'}} onClick={handleCancelClick}>Cancel Reservation</button>
               {showDeletePopup && (
                 <>
                   <div className="overlay" onClick={cancelDelete}></div>

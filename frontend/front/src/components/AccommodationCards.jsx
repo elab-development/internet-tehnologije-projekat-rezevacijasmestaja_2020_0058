@@ -31,6 +31,7 @@ const AccommodationCards = () => {
                         name={accommodation.naziv}
                         location={accommodation.lokacija}
                         price={accommodation.cenaPoNoci}
+                        isMyAccommodation={accommodation.user.id == window.sessionStorage.getItem('userID')}
                     />
                 ))}
             </div>

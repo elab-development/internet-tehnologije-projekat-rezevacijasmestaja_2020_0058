@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import logo from '../assets/SELogo.png';
 import '../styles/NavBar.css';
 import { apiService } from './ApiService';
@@ -31,6 +31,7 @@ const NavBar = () => {
     apiService.logout().then(() => {
       setUser(null);
       navigate('/');
+      window.location.reload();
     });
   };
 

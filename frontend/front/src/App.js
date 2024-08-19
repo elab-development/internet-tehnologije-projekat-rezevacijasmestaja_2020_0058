@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import 'leaflet/dist/leaflet.css';
 import Home from './components/Home.jsx';
 import AccommodationDetail from './components/AccommodationDetail.jsx';
 import LocationAccommodations from './components/LocationAccommodations.jsx';

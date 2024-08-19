@@ -107,6 +107,7 @@ const SearchComponent = () => {
             name={accommodation.naziv}
             location={accommodation.location}
             price={accommodation.cenaPoNoci}
+            isMyAccommodation={accommodation.userID == window.sessionStorage.getItem('userID')}
           />
         ))}
       </div>
