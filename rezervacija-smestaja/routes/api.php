@@ -34,7 +34,8 @@ Route::get('/accommodations/location/{id}', [AccommodationController::class, 'ge
 Route::post('/accommodations', [AccommodationController::class, 'store']);
 Route::delete('/accommodations/{id}', [AccommodationController::class, 'destroy']);
 Route::get('/accommodations/user/{userId}', [AccommodationController::class, 'getByUserId']);
-Route::put('/accommodations/{id}', [AccommodationController::class, 'update']);
+// Route::put('/accommodations/{id}', [AccommodationController::class, 'update']);
+Route::post('/accommodations/{id}', [AccommodationController::class, 'update']);
 // Route::middleware('auth:api')->group(function () {
 //     Route::get('/accommodations/user/{userId}', [AccommodationController::class, 'getByUserId']);
 // });

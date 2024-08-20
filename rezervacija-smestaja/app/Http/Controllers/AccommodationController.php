@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Accommodation;
 use Illuminate\Http\Request;
 use App\Http\Resources\Accommodation\AccommodationCollection;
+use Illuminate\Support\Facades\Storage;
 
 class AccommodationController extends Controller
 {
@@ -19,6 +20,11 @@ class AccommodationController extends Controller
         if (is_null($accommodations) || count($accommodations) === 0) {
             return response()->json('No accommodations found!', 404);
         }
+
+        // $accommodations->each(function ($accommodation) {
+        //     $accommodation->putanja = $accommodation->putanja ? Storage::url($accommodation->putanja) : null;
+        // });
+
         return response()->json(new AccommodationCollection($accommodations));
     }
 
@@ -33,6 +39,14 @@ class AccommodationController extends Controller
         if (is_null($accommodations) || $accommodations->isEmpty()) {
             return response()->json('No accommodations found!', 404);
         }
+
+        $accommodations->each(function ($accommodation) {
+            if ($accommodation->putanja && Storage::disk('public')->exists($accommodation->putanja)) {
+                $accommodation->slika = base64_encode(Storage::disk('public')->get($accommodation->putanja));
+            } else {
+                $accommodation->slika = null;
+            }
+        });
 
         return response()->json(new AccommodationCollection($accommodations));
     }
@@ -61,7 +75,8 @@ class AccommodationController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        /*$validatedData = */
+        $request->validate([
             'naziv' => 'required|string|max:255',
             'opis' => 'required|string',
             'lokacijaID' => 'required|exists:locations,lokacijaID',
@@ -70,12 +85,30 @@ class AccommodationController extends Controller
             'maksimalanBrojOsoba' => 'required|integer|min:1',
             'cenaPoNoci' => 'required|numeric|min:0.01',
             'udaljenostOdCentra' => 'required|numeric|min:0.01',
-            'putanja' => 'required|url',
+            /*'putanja' => 'required|url',*/
             'tipSmestajaID' => 'required|exists:accommodation_types,tipSmestajaID',
-            'userID' => 'required|exists:users,id'
+            'userID' => 'required|exists:users,id',
+            'image' => 'nullable|image|max:2048'
         ]);
 
-        $accommodation = Accommodation::create($validatedData);
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('accommodation-images', 'public');
+        }
+
+        $accommodation = Accommodation::create(/*$validatedData*/[
+            'naziv' => $request->naziv,
+            'opis' => $request->opis,
+            'lokacijaID' => $request->lokacijaID,
+            'adresa' => $request->adresa,
+            'brojKreveta' => $request->brojKreveta,
+            'maksimalanBrojOsoba' => $request->maksimalanBrojOsoba,
+            'cenaPoNoci' => $request->cenaPoNoci,
+            'udaljenostOdCentra' => $request->udaljenostOdCentra,
+            'putanja' => $imagePath,
+            'tipSmestajaID' => $request->tipSmestajaID,
+            'userID' => $request->userID,
+        ]);
 
         return response()->json($accommodation, 201);
     }
@@ -91,26 +124,55 @@ class AccommodationController extends Controller
             return response()->json(['error' => 'Accommodation not found'], 404);
         }
 
+        if ($accommodation->putanja && Storage::disk('public')->exists($accommodation->putanja)) {
+            $accommodation->slika = base64_encode(Storage::disk('public')->get($accommodation->putanja));
+        } else {
+            $accommodation->slika = null;
+        }
+
         return response()->json($accommodation);
     }
 
     public function getByUserId($userID)
     {
-        $accommodations = Accommodation::where('userID', $userID)->with(['location', 'accommodationType'])->get();
+        $accommodations = Accommodation::where('userID', $userID)->with(['location', 'accommodationType', 'user'])->get();
 
-        // if (is_null($accommodations) || count($accommodations) === 0) {
-        //     return response()->json('No accommodations found for this user', 404);
-        // }
+        if (is_null($accommodations) || count($accommodations) === 0) {
+            return response()->json('No accommodations found for this user', 404);
+        }
+
+        // Dodato
+        // $accommodations->each(function ($accommodation) {
+        //     $accommodation->putanja = $accommodation->putanja ? Storage::url($accommodation->putanja) : null;
+        // });
+
+        $accommodations->each(function ($accommodation) {
+            if ($accommodation->putanja && Storage::disk('public')->exists($accommodation->putanja)) {
+                $accommodation->slika = base64_encode(Storage::disk('public')->get($accommodation->putanja));
+            } else {
+                $accommodation->slika = null;
+            }
+        });
+
         return response()->json(new AccommodationCollection($accommodations));
     }
 
     public function getByLocationId($id)
     {
-        $accommodations = Accommodation::where('lokacijaID', $id)->with(['location', 'accommodationType'])->get();
+        $accommodations = Accommodation::where('lokacijaID', $id)->with(['location', 'accommodationType', 'user'])->get();
 
         if (is_null($accommodations) || count($accommodations) === 0) {
             return response()->json('No accommodations found for this location!', 404);
         }
+
+        $accommodations->each(function ($accommodation) {
+            if ($accommodation->putanja && Storage::disk('public')->exists($accommodation->putanja)) {
+                $accommodation->slika = base64_encode(Storage::disk('public')->get($accommodation->putanja));
+            } else {
+                $accommodation->slika = null;
+            }
+        });
+
         return response()->json(new AccommodationCollection($accommodations));
     }
 
@@ -127,7 +189,10 @@ class AccommodationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $accommodation = Accommodation::findOrFail($id);
+
+        // $validatedData = 
+        $request->validate([
             'naziv' => 'required|string|max:255',
             'opis' => 'required|string',
             'lokacijaID' => 'required|integer|exists:locations,lokacijaID',
@@ -136,13 +201,33 @@ class AccommodationController extends Controller
             'maksimalanBrojOsoba' => 'required|integer|min:1',
             'cenaPoNoci' => 'required|numeric|min:0',
             'udaljenostOdCentra' => 'required|numeric|min:0',
-            'putanja' => 'required|string|max:255',
+            // 'putanja' => 'required|string|max:255',
             'tipSmestajaID' => 'required|integer|exists:accommodation_types,tipSmestajaID',
             'userID' => 'required|integer|exists:users,id',
+            'image' => 'nullable|image|max:2048'
         ]);
 
-        $accommodation = Accommodation::findOrFail($id);
-        $accommodation->update($validatedData);
+        if ($request->hasFile('image')) {
+            if ($accommodation->putanja) {
+                Storage::disk('public')->delete($accommodation->putanja);
+            }
+            $accommodation->putanja = $request->file('image')->store('accommodation-images', 'public');
+        }
+
+        // $accommodation->update($validatedData);
+
+        $accommodation->update($request->only([
+            'naziv',
+            'opis',
+            'lokacijaID',
+            'adresa',
+            'brojKreveta',
+            'maksimalanBrojOsoba',
+            'cenaPoNoci',
+            'udaljenostOdCentra',
+            'tipSmestajaID',
+            'userID'
+        ]));
 
         return response()->json(['message' => 'Accommodation updated successfully', 'accommodation' => $accommodation], 200);
     }

@@ -17,13 +17,35 @@ const Reservations = () => {
     const fetchReservations = async () => {
       try {
         const response = await apiService.getReservations(window.sessionStorage.getItem("userID"), currentPage, reservationsPerPage);
-        // console.log(response.data.data);
+
+        const reservationsWithImages = await Promise.all(
+          response.data.data.map(async reservation => {
+              const accommodation = reservation.accommodation;
+              if (accommodation.slika) {
+                  const binaryString = atob(accommodation.slika);
+                  const len = binaryString.length;
+                  const bytes = new Uint8Array(len);
+
+                  for (let i = 0; i < len; i++) {
+                      bytes[i] = binaryString.charCodeAt(i);
+                  }
+
+                  const imageBlob = new Blob([bytes], { type: 'image/jpeg' });
+                  const imageObjectURL = URL.createObjectURL(imageBlob);
+
+                  return {
+                      ...reservation,
+                      accommodation: { ...accommodation, putanja: imageObjectURL },
+                  };
+              }
+              return reservation;
+          })
+      );
+
         // console.log(response);
-        // console.log(response.data);
-        console.log(response.data.data);
-        // console.log(response.data.total);
-        // console.log(response.data.data.total);
-        setReservations(response.data.data);
+        // console.log(response.data.data);
+        // setReservations(response.data.data);
+        setReservations(reservationsWithImages);
         setTotalReservations(response.data.total);
       } catch (error) {
         console.error('Error fetching reservations:', error);

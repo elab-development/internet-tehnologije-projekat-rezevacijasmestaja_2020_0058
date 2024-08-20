@@ -50,24 +50,40 @@ const NewAccommodation = () => {
 
   const onSubmit = data => {
     const userID = sessionStorage.getItem('userID');
-    const newAccommodation = {
-      naziv: data.naziv,
-      opis: data.opis,
-      lokacijaID: parseInt(data.lokacijaID), 
-      adresa: data.adresa,
-      brojKreveta: parseInt(data.brojKreveta), 
-      maksimalanBrojOsoba: parseInt(data.maksimalanBrojOsoba), 
-      cenaPoNoci: parseFloat(data.cenaPoNoci), 
-      udaljenostOdCentra: parseFloat(data.udaljenostOdCentra), 
-      putanja: data.putanja,
-      tipSmestajaID: parseInt(data.tipSmestajaID), 
-      userID: parseInt(userID) 
-    };
+    // const newAccommodation = {
+    //   naziv: data.naziv,
+    //   opis: data.opis,
+    //   lokacijaID: parseInt(data.lokacijaID), 
+    //   adresa: data.adresa,
+    //   brojKreveta: parseInt(data.brojKreveta), 
+    //   maksimalanBrojOsoba: parseInt(data.maksimalanBrojOsoba), 
+    //   cenaPoNoci: parseFloat(data.cenaPoNoci), 
+    //   udaljenostOdCentra: parseFloat(data.udaljenostOdCentra), 
+    //   putanja: data.putanja,
+    //   tipSmestajaID: parseInt(data.tipSmestajaID), 
+    //   userID: parseInt(userID) 
+    // };
+
+    const formData = new FormData();
+
+    formData.append('naziv', data.naziv);
+    formData.append('opis', data.opis);
+    formData.append('lokacijaID', parseInt(data.lokacijaID));
+    formData.append('adresa', data.adresa);
+    formData.append('brojKreveta', parseInt(data.brojKreveta));
+    formData.append('maksimalanBrojOsoba', parseInt(data.maksimalanBrojOsoba));
+    formData.append('cenaPoNoci', parseFloat(data.cenaPoNoci));
+    formData.append('udaljenostOdCentra', parseFloat(data.udaljenostOdCentra));
+    formData.append('tipSmestajaID', parseInt(data.tipSmestajaID));
+    formData.append('userID', parseInt(userID));
+
+    // formData.append('image', data.image[0]);
+    if (data.image[0]) formData.append('image', data.image[0]);
 
     console.log(data);
 
     if(accommodation){
-      apiService.updateAccommodation(accommodation.smestajID, newAccommodation)
+      apiService.updateAccommodation(accommodation.smestajID, /*newAccommodation*/ formData)
         .then(response => {
           toast.success('Accommodation updated successfully', {autoClose: 1500});
           console.log('Accommodation updated:', response.data);
@@ -76,12 +92,9 @@ const NewAccommodation = () => {
         .catch(error => {
           console.error('Error updating accommodation:', error);
           toast.error('Accommodation could not be updated');
-          if (error.response) {
-            console.error('Error response:', error.response.data);
-          }
         });
     } else {
-    apiService.addAccommodation(newAccommodation)
+    apiService.addAccommodation(/*newAccommodation*/ formData)
       .then(response => {
         toast.success('Accommodation created successfully', {autoClose: 1500});
         console.log('Accommodation added:', response.data);
@@ -90,9 +103,6 @@ const NewAccommodation = () => {
       })
       .catch(error => {console.error('Error adding accommodation:', error);
         toast.error('Accommodation could not be created');
-        if (error.response) {
-          console.error('Error response:', error.response.data);
-        }
       });
     }
   };
@@ -147,7 +157,16 @@ const NewAccommodation = () => {
             disabled = {accommodation ? true : false} 
           />
           {errors.udaljenostOdCentra && <p>{errors.udaljenostOdCentra.message}</p>}
-          <input {...register('putanja')} placeholder="Image URL" required title='Image URL'/>
+
+          {/*<input {...register('putanja')} placeholder="Image URL" required title='Image URL'/>*/}
+
+          <input 
+            type="file" 
+            {...register('image', { required: accommodation ? false : true })} 
+            title='Choose image'
+            accept="image/*" 
+          />
+
           <select {...register('tipSmestajaID')} required disabled = {accommodation ? true : false} title='Accommodation type'>
             <option value="">Select Accommodation Type</option>
             {accommodationTypes.map(type => (

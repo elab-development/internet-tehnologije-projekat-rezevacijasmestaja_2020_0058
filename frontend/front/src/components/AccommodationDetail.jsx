@@ -27,7 +27,25 @@ const AccommodationDetail = () => {
         const fetchAccommodation = async () => {
             try {
                 const response = await apiService.getAccommodationById(id);
-                setAccommodation(response.data);
+
+                const accommodation = response.data;
+
+                if (accommodation.slika) {
+                    const binaryString = atob(accommodation.slika);
+                    const len = binaryString.length;
+                    const bytes = new Uint8Array(len);
+
+                    for (let i = 0; i < len; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+
+                    const imageBlob = new Blob([bytes], { type: 'image/jpeg' });
+                    const imageObjectURL = URL.createObjectURL(imageBlob);
+
+                    accommodation.putanja = imageObjectURL;
+                }
+
+                setAccommodation(accommodation);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching accommodation:', error);
@@ -151,7 +169,7 @@ const AccommodationDetail = () => {
                         }
                         return dates;
                     })}/>
-                    <input type="number" value={guests} onChange={e => setGuests(e.target.value)} min="1" placeholder="Number of guests" />
+                    <input type="number" value={guests} onChange={e => setGuests(e.target.value)} min="1" placeholder="Number of guests" max={accommodation.maksimalanBrojOsoba} />
                     <button className="reserve-button" onClick={handleReserve}>Reserve</button>
                     <p><strong>Total Price:</strong> €{totalPrice}</p>
                 </div>

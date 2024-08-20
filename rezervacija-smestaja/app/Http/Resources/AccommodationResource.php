@@ -22,6 +22,7 @@ class AccommodationResource extends JsonResource
             'cenaPoNoci' => $this->cenaPoNoci,
             'udaljenostOdCentra' => $this->udaljenostOdCentra,
             'putanja' => $this->putanja,
+            'slika' => $this->slika,
             'tipSmestaja' => new AccommodationTypeResource($this->whenLoaded('accommodationType')),
             'user' => new UserResource($this->whenLoaded('user'))
         ];

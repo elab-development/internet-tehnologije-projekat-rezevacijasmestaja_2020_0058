@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ReservationController extends Controller
 {
@@ -36,6 +37,15 @@ class ReservationController extends Controller
             ->with('accommodation.location')
             ->orderBy('created_at', 'desc')
             ->paginate($perPage);
+
+        $reservations->getCollection()->transform(function ($reservation) {
+            if ($reservation->accommodation->putanja && Storage::disk('public')->exists($reservation->accommodation->putanja)) {
+                $reservation->accommodation->slika = base64_encode(Storage::disk('public')->get($reservation->accommodation->putanja));
+            } else {
+                $reservation->accommodation->slika = null;
+            }
+            return $reservation;
+        });
 
         return response()->json($reservations);
     }

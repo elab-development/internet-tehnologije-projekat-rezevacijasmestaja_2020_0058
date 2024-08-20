@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/LocationCard.css'; 
+import { Navigate } from "react-router-dom";
 
 const LocationCard = ({ locationId, image, city, country }) => {
     const handleClick = () => {
