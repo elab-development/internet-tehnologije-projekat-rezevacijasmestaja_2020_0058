@@ -12,9 +12,12 @@ body {
   padding: 20px 0;
   background-color: #8be8e5;
   /* position: sticky; */
+  /* position: fixed; */
+  /* position: absolute; */
   bottom: 0;
   left: 0;
   /* margin-top: 3rem; */
+  /* margin-top: auto; */
 }
 
 .socialIcons {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Accommodation;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Storage;
 
 class SearchController extends Controller
 {
@@ -41,12 +42,12 @@ class SearchController extends Controller
                 $query->where(function ($query) use ($destinationParts) {
                     foreach ($destinationParts as $part) {
                         $query->orWhere('grad', 'like', "%$part%")
-                                ->orWhere('drzava', 'like', "%$part%");
+                            ->orWhere('drzava', 'like', "%$part%");
                     }
                 });
             })
             ->where('maksimalanBrojOsoba', '>=', $guests)
-            ->get();     
+            ->get();
 
         // Filter out accommodations that are reserved in the given date range
         $filteredAccommodations = $accommodations->filter(function ($accommodation) use ($startDate, $endDate) {
@@ -62,6 +63,15 @@ class SearchController extends Controller
                 ->exists();
 
             return !$reservations;
+        });
+
+        $filteredAccommodations->transform(function ($accommodation) {
+            if ($accommodation->putanja && Storage::disk('public')->exists($accommodation->putanja)) {
+                $accommodation->setAttribute('slika', base64_encode(Storage::disk('public')->get($accommodation->putanja)));
+            } else {
+                $accommodation->setAttribute('slika', null);
+            }
+            return $accommodation;
         });
 
         return response()->json($filteredAccommodations);

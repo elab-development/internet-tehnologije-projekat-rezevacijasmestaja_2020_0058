@@ -46,7 +46,7 @@ const Register = () => {
             placeholder="Password"
             required
           />
-          <button type="submit">Register</button>
+          <button type="submit" data-testid="register-button">Register</button>
           {error && <p className="error">{error}</p>}
           <p>Already have an account? <Link to="/login">Log in</Link></p>
         </form>

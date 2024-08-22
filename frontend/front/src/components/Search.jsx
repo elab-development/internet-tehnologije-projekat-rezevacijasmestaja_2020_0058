@@ -33,10 +33,33 @@ const SearchComponent = () => {
     // console.log("Search data:", { destination, startDate, endDate, guests });
     apiService.searchAccommodations(destination, startDate, endDate, guests)
       .then(response => {
-        const data = response.data;
-        console.log(data);
-        setResults(data);
-        if (data.length === 0) {
+
+        const accommodationsWithImages = response.data.map(accommodation => {
+          if (accommodation.slika) {
+              const binaryString = atob(accommodation.slika);
+              const len = binaryString.length;
+              const bytes = new Uint8Array(len);
+
+              for (let i = 0; i < len; i++) {
+                  bytes[i] = binaryString.charCodeAt(i);
+              }
+
+              const imageBlob = new Blob([bytes], { type: 'image/jpeg' });
+              const imageObjectURL = URL.createObjectURL(imageBlob);
+
+              return { ...accommodation, putanja: imageObjectURL };
+          }
+          return accommodation;
+      });
+
+        // const data = response.data;
+        // console.log(data);
+
+        setResults(accommodationsWithImages);
+
+        // setResults(data);
+
+        if (accommodationsWithImages.length === 0) {
           setErrorMessage('No accommodations available for the selected dates. Please choose different dates.');
         } else {
           setErrorMessage('');
@@ -89,12 +112,12 @@ const SearchComponent = () => {
           />
         </div>
         <div className="guestsContainer">
-          <input type="text" value={`${guests} Guests`} readOnly className="input" />
+          <input type="text" value={`${guests} Guests`} readOnly className="input" data-testid="guests-text"/>
           <button onClick={decreaseGuests} className="guestButton">-</button>
           <button onClick={increaseGuests} className="guestButton">+</button>
         </div>
       </div>
-      <button className="searchButton" onClick={handleSearch}>
+      <button className="searchButton" onClick={handleSearch} data-testid="search-button">
         <FaSearch className="searchIcon" />
       </button>
 

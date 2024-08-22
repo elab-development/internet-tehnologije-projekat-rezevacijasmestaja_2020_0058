@@ -50,19 +50,6 @@ const NewAccommodation = () => {
 
   const onSubmit = data => {
     const userID = sessionStorage.getItem('userID');
-    // const newAccommodation = {
-    //   naziv: data.naziv,
-    //   opis: data.opis,
-    //   lokacijaID: parseInt(data.lokacijaID), 
-    //   adresa: data.adresa,
-    //   brojKreveta: parseInt(data.brojKreveta), 
-    //   maksimalanBrojOsoba: parseInt(data.maksimalanBrojOsoba), 
-    //   cenaPoNoci: parseFloat(data.cenaPoNoci), 
-    //   udaljenostOdCentra: parseFloat(data.udaljenostOdCentra), 
-    //   putanja: data.putanja,
-    //   tipSmestajaID: parseInt(data.tipSmestajaID), 
-    //   userID: parseInt(userID) 
-    // };
 
     const formData = new FormData();
 
@@ -83,7 +70,7 @@ const NewAccommodation = () => {
     console.log(data);
 
     if(accommodation){
-      apiService.updateAccommodation(accommodation.smestajID, /*newAccommodation*/ formData)
+      apiService.updateAccommodation(accommodation.smestajID, formData)
         .then(response => {
           toast.success('Accommodation updated successfully', {autoClose: 1500});
           console.log('Accommodation updated:', response.data);
@@ -94,7 +81,7 @@ const NewAccommodation = () => {
           toast.error('Accommodation could not be updated');
         });
     } else {
-    apiService.addAccommodation(/*newAccommodation*/ formData)
+    apiService.addAccommodation(formData)
       .then(response => {
         toast.success('Accommodation created successfully', {autoClose: 1500});
         console.log('Accommodation added:', response.data);

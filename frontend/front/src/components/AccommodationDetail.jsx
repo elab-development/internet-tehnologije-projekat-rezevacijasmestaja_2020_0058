@@ -1,3 +1,5 @@
+// package.json -> "test": "react-scripts test",
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
@@ -23,6 +25,19 @@ const AccommodationDetail = () => {
     const [reservedDates, setReservedDates] = useState([]);
     const isMyAccommodation = location.state?.isMyAccommodation || false;
     
+    const fetchReservedDates = async () => {
+        try {
+            const response = await apiService.getReservedDates(id);
+            const dates = response.data.map(reservation => ({
+                start: new Date(reservation.datumPrijave),
+                end: new Date(reservation.datumOdjave)
+            }));
+            setReservedDates(dates);
+        } catch (error) {
+            console.error('Error fetching reserved dates:', error);
+        }
+    };
+
     useEffect(() => {
         const fetchAccommodation = async () => {
             try {
@@ -50,19 +65,6 @@ const AccommodationDetail = () => {
             } catch (error) {
                 console.error('Error fetching accommodation:', error);
                 setLoading(false);
-            }
-        };
-
-        const fetchReservedDates = async () => {
-            try {
-                const response = await apiService.getReservedDates(id);
-                const dates = response.data.map(reservation => ({
-                    start: new Date(reservation.datumPrijave),
-                    end: new Date(reservation.datumOdjave)
-                }));
-                setReservedDates(dates);
-            } catch (error) {
-                console.error('Error fetching reserved dates:', error);
             }
         };
 
@@ -126,6 +128,12 @@ const AccommodationDetail = () => {
             console.log(error.response.data);
             alert("There was an error creating your reservation. Please try again.");
         }
+
+        setStartDate(null);
+        setEndDate(null);
+        setGuests(1);
+
+        fetchReservedDates();
     };
 
     if (loading) {
