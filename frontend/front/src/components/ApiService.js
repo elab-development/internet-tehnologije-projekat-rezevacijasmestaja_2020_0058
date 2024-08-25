@@ -6,13 +6,6 @@ class ApiService {
     return axios.post("http://localhost:8000/api/register", user);
   }
 
-  // login(email, password) {
-  //   return axios.post("http://localhost:8000/api/login", {
-  //     email: email,
-  //     password: password
-  //   });
-  // }
-
   login(email, password) {
     return axios.post('http://localhost:8000/api/login', { email, password })
       .then(response => {
@@ -22,10 +15,6 @@ class ApiService {
         return response.data;
       });
   }
-
-  // logout() {
-  //   return window.sessionStorage.clear();
-  // }
 
   logout() {
     return axios.post('http://localhost:8000/api/logout', {}, {
@@ -67,26 +56,6 @@ class ApiService {
     window.sessionStorage.removeItem("userID");
   }
 
- /* getLoggedInUser() {
-    const token = this.getToken();
-    const { id } = this.getLoginInfo();
-
-    if (!token || !id) {
-      return Promise.reject("User is not logged in");
-    }
-
-    return axios.get(`http://localhost:8000/api/users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.data)
-      .catch((error) => {
-        console.error("Error fetching logged-in user:", error);
-        throw error;
-      });
-  }*/
-
   // Accommodations
   getAccommodations() {
     return axios.get("http://localhost:8000/api/accommodations");
@@ -125,26 +94,9 @@ class ApiService {
   }
 
   updateAccommodation(id, data){
-    // return axios.put(`http://localhost:8000/api/accommodations/${id}`, data);
     return axios.post(`http://localhost:8000/api/accommodations/${id}`, data);
   }
 
-/*
-  updateAccommodation(id, accommodation) {
-    return axios.put(`http://localhost:8000/api/accommodations/${id}`, accommodation, {
-      headers: {
-        Authorization: `Bearer ${this.getToken()}`,
-      },
-    });
-  }*/
-
-  /*deleteAccommodation(id) {
-    return axios.delete(`http://localhost:8000/api/accommodations/${id}`, {
-      headers: {
-        Authorization: `Bearer ${this.getToken()}`,
-      },
-    });
-  }*/
 
   // Search accommodations
   searchAccommodations(destination, startDate, endDate, guests) {
@@ -169,11 +121,7 @@ class ApiService {
   }
 
   // Reservations
-  
-/*
-  getReservationById(id) {
-    return axios.get(`http://localhost:8000/api/reservations/${id}`);
-  }*/
+
 
     getAccommodationTypes() {
       return axios.get('http://localhost:8000/api/accommodation-types');
@@ -184,7 +132,6 @@ class ApiService {
     }
 
     cancelReservation(reservationID){
-      // console.log("apiservice: " + reservationID);
       return axios.delete(`http://localhost:8000/api/reservations/${reservationID}`);
     }
 
@@ -199,22 +146,6 @@ class ApiService {
       },
     });
   }
-/*
-  updateReservation(id, reservation) {
-    return axios.put(`http://localhost:8000/api/reservations/${id}`, reservation, {
-      headers: {
-        Authorization: `Bearer ${this.getToken()}`,
-      },
-    });
-  }*/
-
- /* deleteReservation(id) {
-    return axios.delete(`http://localhost:8000/api/reservations/${id}`, {
-      headers: {
-        Authorization: `Bearer ${this.getToken()}`,
-      },
-    });
-  }*/
 
 
 }

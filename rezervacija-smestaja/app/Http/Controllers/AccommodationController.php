@@ -6,6 +6,7 @@ use App\Models\Accommodation;
 use Illuminate\Http\Request;
 use App\Http\Resources\Accommodation\AccommodationCollection;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\AccommodationResource;
 
 class AccommodationController extends Controller
 {
@@ -242,6 +243,6 @@ class AccommodationController extends Controller
             return response()->json(['message' => 'Accommodation not found'], 404);
         }
         $accommodation->delete();
-        return response()->json(['message' => 'Accommodation deleted successfully']);
+        return response()->json(['message' => 'Accommodation deleted successfully', new AccommodationResource($accommodation)]);
     }
 }
