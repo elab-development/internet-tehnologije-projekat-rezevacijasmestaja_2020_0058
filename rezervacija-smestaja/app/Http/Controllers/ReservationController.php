@@ -27,7 +27,10 @@ class ReservationController extends Controller
             'smestajID' => $request->smestajID,
         ]);
 
-        return response()->json($reservation, 201);
+        return response()->json([
+            'message' => 'Reservation created successfully',
+            'reservation' => $reservation
+        ], 201);
     }
 
     public function getUserReservations($userId, Request $request)
@@ -58,9 +61,14 @@ class ReservationController extends Controller
             return response()->json(['message' => 'Reservation not found'], 404);
         }
 
+        $reservationData = $reservation->toArray();
+
         $reservation->delete();
 
-        return response()->json(['message' => 'Reservation deleted successfully'], 200);
+        return response()->json([
+            'message' => 'Reservation deleted successfully',
+            'reservation' => $reservationData
+        ], 200);
     }
 
     public function getReservedDates($smestajID)
