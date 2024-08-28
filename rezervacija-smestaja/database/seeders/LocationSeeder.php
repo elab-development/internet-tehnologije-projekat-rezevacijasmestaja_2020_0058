@@ -13,8 +13,6 @@ class LocationSeeder extends Seeder
      */
     public function run(): void
     {
-        //Location::factory()->count(5)->create();
-
         $locations = [
             ['grad' => 'Pariz', 'drzava' => 'Francuska', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()],
             ['grad' => 'Berlin', 'drzava' => 'Nemacka', 'putanja' => 'https://via.placeholder.com/640x480.png/007711?text=quidem', 'created_at' => now(), 'updated_at' => now()],

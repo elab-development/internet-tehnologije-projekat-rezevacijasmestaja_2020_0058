@@ -13,9 +13,7 @@ class AccommodationTypeSeeder extends Seeder
      */
     public function run(): void
     {
-                //AccommodationType::factory()->count(3)->create();
-
-                $accommodationTypes = [
+               $accommodationTypes = [
                     ['naziv' => 'stan', 'created_at' => now(), 'updated_at' => now()],
                     ['naziv' => 'kuca', 'created_at' => now(), 'updated_at' => now()],
                     ['naziv' => 'apartman', 'created_at' => now(), 'updated_at' => now()]

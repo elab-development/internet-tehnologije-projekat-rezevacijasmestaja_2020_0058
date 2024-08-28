@@ -36,9 +36,6 @@ Route::delete('/accommodations/{id}', [AccommodationController::class, 'destroy'
 Route::get('/accommodations/user/{userId}', [AccommodationController::class, 'getByUserId']);
 // Route::put('/accommodations/{id}', [AccommodationController::class, 'update']);
 Route::post('/accommodations/{id}', [AccommodationController::class, 'update']);
-// Route::middleware('auth:api')->group(function () {
-//     Route::get('/accommodations/user/{userId}', [AccommodationController::class, 'getByUserId']);
-// });
 
 Route::get('/unavailable-dates', [SearchController::class, 'getUnavailableDates']);
 Route::get('/search', [SearchController::class, 'search']);
@@ -47,9 +44,8 @@ Route::get('/locations', [LocationController::class, 'index']);
 Route::get('/locations5', [LocationController::class, 'get5Random']);
 Route::get('/locations/{id}', [LocationController::class, 'show']);
 
-Route::get('/accommodation-types', [AccommodationTypeController::class, 'index']); // Izmenjeno
+Route::get('/accommodation-types', [AccommodationTypeController::class, 'index']);
 
-//Route::post('/reservations', [ReservationController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/reservations', [ReservationController::class, 'store']);
 Route::get('/reservations/{userId}', [ReservationController::class, 'getUserReservations']);
 Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
@@ -63,9 +59,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
-    // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
-
-    //Route::get('/reservations', [ReservationController::class, 'index']);
-    // Route::post('/reservations', [ReservationController::class, 'store']); // Izmenjeno -> zakomentarisano
 });

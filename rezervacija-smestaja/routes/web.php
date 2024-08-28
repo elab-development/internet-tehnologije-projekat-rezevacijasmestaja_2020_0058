@@ -17,8 +17,3 @@ use App\Http\Controllers\UserReservationController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
-// Route::get('/users/{id}', [UserController::class, 'show']);
-// Route::get('/cache',[UserController::class, 'index']);

@@ -35,7 +35,7 @@ class ReservationController extends Controller
 
     public function getUserReservations($userId, Request $request)
     {
-        $perPage = $request->input('per_page', 8); // Broj rezervacija po stranici, podrazumevano 5
+        $perPage = $request->input('per_page', 8);
         $reservations = Reservation::where('userID', $userId)
             ->with('accommodation.location')
             ->orderBy('created_at', 'desc')

@@ -15,16 +15,12 @@ class AccommodationController extends Controller
      */
     public function index()
     {
-        // $accommodations = Accommodation::all();
+
         $accommodations = Accommodation::with(['user', 'location', 'accommodationType'])->get();
 
         if (is_null($accommodations) || count($accommodations) === 0) {
             return response()->json('No accommodations found!', 404);
         }
-
-        // $accommodations->each(function ($accommodation) {
-        //     $accommodation->putanja = $accommodation->putanja ? Storage::url($accommodation->putanja) : null;
-        // });
 
         return response()->json(new AccommodationCollection($accommodations));
     }
@@ -76,7 +72,7 @@ class AccommodationController extends Controller
      */
     public function store(Request $request)
     {
-        /*$validatedData = */
+
         $request->validate([
             'naziv' => 'required|string|max:255',
             'opis' => 'required|string',
@@ -97,7 +93,7 @@ class AccommodationController extends Controller
             $imagePath = $request->file('image')->store('accommodation-images', 'public');
         }
 
-        $accommodation = Accommodation::create(/*$validatedData*/[
+        $accommodation = Accommodation::create([
             'naziv' => $request->naziv,
             'opis' => $request->opis,
             'lokacijaID' => $request->lokacijaID,
@@ -141,11 +137,6 @@ class AccommodationController extends Controller
         if (is_null($accommodations) || count($accommodations) === 0) {
             return response()->json('No accommodations found for this user', 404);
         }
-
-        // Dodato
-        // $accommodations->each(function ($accommodation) {
-        //     $accommodation->putanja = $accommodation->putanja ? Storage::url($accommodation->putanja) : null;
-        // });
 
         $accommodations->each(function ($accommodation) {
             if ($accommodation->putanja && Storage::disk('public')->exists($accommodation->putanja)) {
@@ -192,7 +183,6 @@ class AccommodationController extends Controller
     {
         $accommodation = Accommodation::findOrFail($id);
 
-        // $validatedData = 
         $request->validate([
             'naziv' => 'required|string|max:255',
             'opis' => 'required|string',
@@ -214,8 +204,6 @@ class AccommodationController extends Controller
             }
             $accommodation->putanja = $request->file('image')->store('accommodation-images', 'public');
         }
-
-        // $accommodation->update($validatedData);
 
         $accommodation->update($request->only([
             'naziv',
