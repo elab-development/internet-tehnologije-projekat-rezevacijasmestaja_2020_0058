@@ -64,5 +64,17 @@ Uneti redom komande:
 # Funkcionalnosti za administratora:
 
 - Prijava (Login)
+- Pretraga smeštaja
+- Pregled detalja smeštaja
 - Brisanje smeštaja
+- Pregled preporučenih smeštaja
+- Pregled smeštaja po lokaciji
+- Rezervacija smeštaja
+- Pregled svih korisnikovih rezervacija
+- Pregled detalja rezervacije
+- Otkazivanje rezervacije
+- Dodavanje sopstvenog smeštaja
+- Pregled detalja sopstvenog smeštaja
+- Izmena sopstvenog smeštaja
+- Brisanje sopstvenog smeštaja
 - Odjava (Logout)
