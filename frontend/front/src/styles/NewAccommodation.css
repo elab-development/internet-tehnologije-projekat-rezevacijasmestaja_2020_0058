@@ -28,7 +28,7 @@
   padding: 10px;
   border: 1px solid #a084e8;
   border-radius: 4px;
-  font-family: inherit; /* Ensures consistent font across inputs */
+  font-family: inherit;
 }
 
 .new-accommodation-form input:focus,
@@ -39,7 +39,7 @@
 }
 
 .new-accommodation-form textarea.description {
-  resize: none; /* Prevents resizing */
+  resize: none;
 }
 
 .form-buttons {

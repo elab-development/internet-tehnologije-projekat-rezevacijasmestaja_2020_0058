@@ -64,7 +64,6 @@ const NewAccommodation = () => {
     formData.append('tipSmestajaID', parseInt(data.tipSmestajaID));
     formData.append('userID', parseInt(userID));
 
-    // formData.append('image', data.image[0]);
     if (data.image[0]) formData.append('image', data.image[0]);
 
     console.log(data);
@@ -144,8 +143,6 @@ const NewAccommodation = () => {
             disabled = {accommodation ? true : false} 
           />
           {errors.udaljenostOdCentra && <p>{errors.udaljenostOdCentra.message}</p>}
-
-          {/*<input {...register('putanja')} placeholder="Image URL" required title='Image URL'/>*/}
 
           <input 
             type="file" 

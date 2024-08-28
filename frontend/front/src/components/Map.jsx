@@ -43,7 +43,6 @@ const Map = ({ address }) => {
         <div style={{ border: '5px solid #8be8e5', borderRadius: '10px', overflow: 'hidden', height: '30vh', width: '25rem', margin: '40px 0 20px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             {loading ? (
                 <div className='d-flex flex-wrap justify-content-center align-item-center' style={{width:"100%", display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-                {/* <Loader marginT="100px"></Loader> */}
                     <p>Loading...</p>
                 </div>
             ) : (

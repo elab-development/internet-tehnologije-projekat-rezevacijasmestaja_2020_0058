@@ -31,7 +31,6 @@ const AccommodationCards = () => {
                     })
                 );
 
-                // setAccommodations(response.data);
                 setAccommodations(accommodationsWithImages);
             } catch (error) {
                 console.error('Error fetching accommodations:', error);

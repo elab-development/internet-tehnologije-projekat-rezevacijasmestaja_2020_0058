@@ -1,4 +1,3 @@
-// Register.test.js
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -14,9 +13,6 @@ jest.mock('./ApiService', () => ({
 }));
 
 describe('Register Component', () => {
-//   beforeEach(() => {
-//     jest.clearAllMocks();
-//   });
 
   test('renders the register form', () => {
     render(
