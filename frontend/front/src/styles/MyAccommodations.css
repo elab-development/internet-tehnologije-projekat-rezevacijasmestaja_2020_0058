@@ -1,0 +1,15 @@
+.my-accommodations {
+  padding: 20px;
+  background-color: #d5ffe4;
+  min-height: 100vh;
+}
+
+.my-accommodations h1 {
+  color: #6f61c0;
+}
+
+.accommodation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

@@ -1,0 +1,42 @@
+.accommodation-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 300px;
+  margin: 10px;
+}
+
+.accommodation-card:hover {
+  transform: scale(1.05);
+}
+
+.accommodation-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.accommodation-details {
+  padding: 16px;
+  text-align: center;
+}
+
+.accommodation-name {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #6f61c0;
+}
+
+.accommodation-location {
+  font-size: 1rem;
+  color: #666;
+  margin: 8px 0;
+}
+
+.accommodation-price {
+  font-size: 1.25rem;
+  color: #a084e8;
+  margin: 8px 0;
+}

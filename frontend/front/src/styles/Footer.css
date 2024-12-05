@@ -1,0 +1,61 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.footer {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #8be8e5;
+  bottom: 0;
+  left: 0;
+}
+
+.socialIcons {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.socialIconItem {
+  margin: 0 10px;
+}
+
+.socialIconItem a {
+  font-size: 20px;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.socialIconItem a img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+.socialIconItem a img:hover {
+  filter: brightness(0.7);
+}
+
+.socialText {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #5f3376;
+}
+
+.socialIconItem a span:hover {
+  color: #f7f7f7;
+}
+
+.fText {
+  color: #5f3376;
+  font-size: 10px;
+  margin-top: 10px;
+}

@@ -1,0 +1,12 @@
+.accommodation-cards-container {
+    text-align: center;
+    padding: 20px;
+    color: #6F61C0;
+}
+
+.accommodation-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
